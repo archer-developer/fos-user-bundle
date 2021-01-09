@@ -25,7 +25,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\FilterUserResponseEvent")
      */
-    public const CHANGE_PASSWORD_COMPLETED = 'FOS_user.change_password.edit.completed';
+    public const CHANGE_PASSWORD_COMPLETED = 'fos_user.change_password.edit.completed';
 
     /**
      * The USER_CREATED event occurs when the user is created with UserManipulator.
@@ -34,7 +34,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_CREATED = 'FOS_user.user.created';
+    public const USER_CREATED = 'fos_user.user.created';
 
     /**
      * The USER_PASSWORD_CHANGED event occurs when the user is created with UserManipulator.
@@ -43,7 +43,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_PASSWORD_CHANGED = 'FOS_user.user.password_changed';
+    public const USER_PASSWORD_CHANGED = 'fos_user.user.password_changed';
 
     /**
      * The USER_ACTIVATED event occurs when the user is created with UserManipulator.
@@ -52,7 +52,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_ACTIVATED = 'FOS_user.user.activated';
+    public const USER_ACTIVATED = 'fos_user.user.activated';
 
     /**
      * The USER_DEACTIVATED event occurs when the user is created with UserManipulator.
@@ -61,7 +61,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_DEACTIVATED = 'FOS_user.user.deactivated';
+    public const USER_DEACTIVATED = 'fos_user.user.deactivated';
 
     /**
      * The USER_PROMOTED event occurs when the user is created with UserManipulator.
@@ -70,7 +70,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_PROMOTED = 'FOS_user.user.promoted';
+    public const USER_PROMOTED = 'fos_user.user.promoted';
 
     /**
      * The USER_DEMOTED event occurs when the user is created with UserManipulator.
@@ -79,7 +79,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_DEMOTED = 'FOS_user.user.demoted';
+    public const USER_DEMOTED = 'fos_user.user.demoted';
 
     /**
      * The USER_LOCALE_CHANGED event occurs when the user changed the locale.
@@ -88,7 +88,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_LOCALE_CHANGED = 'FOS_user.user.locale_changed';
+    public const USER_LOCALE_CHANGED = 'fos_user.user.locale_changed';
 
     /**
      * The USER_TIMEZONE_CHANGED event occurs when the user changed the timezone.
@@ -97,7 +97,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const USER_TIMEZONE_CHANGED = 'FOS_user.user.timezone_changed';
+    public const USER_TIMEZONE_CHANGED = 'fos_user.user.timezone_changed';
 
     /**
      * The CHANGE_PASSWORD_INITIALIZE event occurs when the change password process is initialized.
@@ -106,7 +106,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const CHANGE_PASSWORD_INITIALIZE = 'FOS_user.change_password.edit.initialize';
+    public const CHANGE_PASSWORD_INITIALIZE = 'fos_user.change_password.edit.initialize';
 
     /**
      * The CHANGE_PASSWORD_SUCCESS event occurs when the change password form is submitted successfully.
@@ -115,7 +115,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\FormEvent")
      */
-    public const CHANGE_PASSWORD_SUCCESS = 'FOS_user.change_password.edit.success';
+    public const CHANGE_PASSWORD_SUCCESS = 'fos_user.change_password.edit.success';
 
     /**
      * The RESETTING_RESET_REQUEST event occurs when a user requests a password reset of the account.
@@ -125,7 +125,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const RESETTING_RESET_REQUEST = 'FOS_user.resetting.reset.request';
+    public const RESETTING_RESET_REQUEST = 'fos_user.resetting.reset.request';
 
     /**
      * The RESETTING_RESET_INITIALIZE event occurs when the resetting process is initialized.
@@ -134,7 +134,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const RESETTING_RESET_INITIALIZE = 'FOS_user.resetting.reset.initialize';
+    public const RESETTING_RESET_INITIALIZE = 'fos_user.resetting.reset.initialize';
 
     /**
      * The RESETTING_RESET_SUCCESS event occurs when the resetting form is submitted successfully.
@@ -143,7 +143,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\FormEvent ")
      */
-    public const RESETTING_RESET_SUCCESS = 'FOS_user.resetting.reset.success';
+    public const RESETTING_RESET_SUCCESS = 'fos_user.resetting.reset.success';
 
     /**
      * The RESETTING_RESET_COMPLETED event occurs after saving the user in the resetting process.
@@ -152,7 +152,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\FilterUserResponseEvent")
      */
-    public const RESETTING_RESET_COMPLETED = 'FOS_user.resetting.reset.completed';
+    public const RESETTING_RESET_COMPLETED = 'fos_user.resetting.reset.completed';
 
     /**
      * The SECURITY_LOGIN_INITIALIZE event occurs when the send email process is initialized.
@@ -162,7 +162,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseLoginEvent")
      */
-    public const SECURITY_LOGIN_INITIALIZE = 'FOS_user.security.login.initialize';
+    public const SECURITY_LOGIN_INITIALIZE = 'fos_user.security.login.initialize';
 
     /**
      * The SECURITY_LOGIN_COMPLETED event occurs after the user is logged in.
@@ -172,7 +172,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const SECURITY_LOGIN_COMPLETED = 'FOS_user.security.login.completed';
+    public const SECURITY_LOGIN_COMPLETED = 'fos_user.security.login.completed';
 
     /**
      * The SECURITY_IMPLICIT_LOGIN event occurs when the user is logged in programmatically.
@@ -181,7 +181,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\UserEvent")
      */
-    public const SECURITY_IMPLICIT_LOGIN = 'FOS_user.security.implicit_login';
+    public const SECURITY_IMPLICIT_LOGIN = 'fos_user.security.implicit_login';
 
     /**
      * The RESETTING_SEND_EMAIL_INITIALIZE event occurs when the send email process is initialized.
@@ -191,7 +191,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
      */
-    public const RESETTING_SEND_EMAIL_INITIALIZE = 'FOS_user.resetting.send_email.initialize';
+    public const RESETTING_SEND_EMAIL_INITIALIZE = 'fos_user.resetting.send_email.initialize';
 
     /**
      * The RESETTING_SEND_EMAIL_CONFIRM event occurs when all prerequisites to send email are
@@ -202,7 +202,7 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const RESETTING_SEND_EMAIL_CONFIRM = 'FOS_user.resetting.send_email.confirm';
+    public const RESETTING_SEND_EMAIL_CONFIRM = 'fos_user.resetting.send_email.confirm';
 
     /**
      * The RESETTING_SEND_EMAIL_COMPLETED event occurs after the email is sent.
@@ -212,5 +212,5 @@ final class FOSUserEvents
      *
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
-    public const RESETTING_SEND_EMAIL_COMPLETED = 'FOS_user.resetting.send_email.completed';
+    public const RESETTING_SEND_EMAIL_COMPLETED = 'fos_user.resetting.send_email.completed';
 }

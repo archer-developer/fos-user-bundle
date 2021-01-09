@@ -48,7 +48,7 @@ final class ResettingFormType extends AbstractType
                 ],
                 'first_options'   => ['label' => 'form.new_password'],
                 'second_options'  => ['label' => 'form.new_password_confirmation'],
-                'invalid_message' => 'FOS_user.password.mismatch',
+                'invalid_message' => 'fos_user.password.mismatch',
             ])
             ->add('save', SubmitType::class, [
                 'label'  => 'resetting.reset.submit',

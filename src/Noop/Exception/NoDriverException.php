@@ -19,7 +19,7 @@ final class NoDriverException extends RuntimeException
     public function __construct(?string $message = null, int $code = 0, Exception $previous = null)
     {
         parent::__construct(
-            null === $message ? 'The child node "db_driver" at path "FOS_user" must be configured.' : $message,
+            null === $message ? 'The child node "db_driver" at path "fos_user" must be configured.' : $message,
             $code,
             $previous
         );

@@ -59,13 +59,13 @@ final class Configuration implements ConfigurationInterface
             // Using the custom driver requires changing the manager services
             ->validate()
                 ->ifTrue(static function ($v): bool {
-                    return 'custom' === $v['db_driver'] && 'FOS_user.user_manager.default' === $v['service']['user_manager'];
+                    return 'custom' === $v['db_driver'] && 'fos_user.user_manager.default' === $v['service']['user_manager'];
                 })
                 ->thenInvalid('You need to specify your own user manager service when using the "custom" driver.')
             ->end()
             ->validate()
                 ->ifTrue(static function ($v): bool {
-                    return 'custom' === $v['db_driver'] && isset($v['group']) && 'FOS_user.group_manager.default' === $v['group']['group_manager'];
+                    return 'custom' === $v['db_driver'] && isset($v['group']) && 'fos_user.group_manager.default' === $v['group']['group_manager'];
                 })
                 ->thenInvalid('You need to specify your own group manager service when using the "custom" driver.')
             ->end()
@@ -97,11 +97,11 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('service')
                     ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('mailer')->defaultValue('FOS_user.mailer.default')->end()
-                            ->scalarNode('email_canonicalizer')->defaultValue('FOS_user.util.canonicalizer.default')->end()
-                            ->scalarNode('token_generator')->defaultValue('FOS_user.util.token_generator.default')->end()
-                            ->scalarNode('username_canonicalizer')->defaultValue('FOS_user.util.canonicalizer.default')->end()
-                            ->scalarNode('user_manager')->defaultValue('FOS_user.user_manager.default')->end()
+                            ->scalarNode('mailer')->defaultValue('fos_user.mailer.default')->end()
+                            ->scalarNode('email_canonicalizer')->defaultValue('fos_user.util.canonicalizer.default')->end()
+                            ->scalarNode('token_generator')->defaultValue('fos_user.util.token_generator.default')->end()
+                            ->scalarNode('username_canonicalizer')->defaultValue('fos_user.util.canonicalizer.default')->end()
+                            ->scalarNode('user_manager')->defaultValue('fos_user.user_manager.default')->end()
                         ->end()
                     ->end()
                 ->end()
@@ -117,7 +117,7 @@ final class Configuration implements ConfigurationInterface
                     ->canBeUnset()
                     ->children()
                         ->scalarNode('group_class')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('group_manager')->defaultValue('FOS_user.group_manager.default')->end()
+                        ->scalarNode('group_manager')->defaultValue('fos_user.group_manager.default')->end()
                     ->end()
                 ->end()
             ->end()

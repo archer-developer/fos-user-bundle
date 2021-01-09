@@ -75,7 +75,7 @@ final class ResetAction
         $user = $this->userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            return new RedirectResponse($this->router->generate('FOS_user_security_login'));
+            return new RedirectResponse($this->router->generate('fos_user_security_login'));
         }
 
         $event = new GetResponseUserEvent($user, $request);
@@ -100,7 +100,7 @@ final class ResetAction
             $this->userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url      = $this->router->generate('FOS_user_security_loggedin');
+                $url      = $this->router->generate('fos_user_security_loggedin');
                 $response = new RedirectResponse($url);
             }
 

@@ -113,7 +113,7 @@ final class ChangePasswordAction
             $this->userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url      = $this->router->generate('FOS_user_security_loggedin');
+                $url      = $this->router->generate('fos_user_security_loggedin');
                 $response = new RedirectResponse($url);
             }
 

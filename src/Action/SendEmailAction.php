@@ -90,7 +90,7 @@ final class SendEmailAction
             }
         }
 
-        return new RedirectResponse($this->router->generate('FOS_user_resetting_check_email', [
+        return new RedirectResponse($this->router->generate('fos_user_resetting_check_email', [
             'username' => $username,
         ]));
     }

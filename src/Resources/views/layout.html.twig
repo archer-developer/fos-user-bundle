@@ -7,11 +7,11 @@
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('FOS_user_security_logout') }}">
+                <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% else %}
-                <a href="{{ path('FOS_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
         </div>
 
@@ -26,8 +26,8 @@
         {% endif %}
 
         <div>
-            {% block FOS_user_content %}
-            {% endblock FOS_user_content %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
         </div>
     </body>
 </html>

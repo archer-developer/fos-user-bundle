@@ -1,4 +1,4 @@
-FOS_user:
+fos_user:
     username:
         already_used: 'The username is already used.'
         blank: 'Please enter a username.'
@@ -23,6 +23,6 @@ FOS_user:
         blank: 'Please enter a name.'
         short: 'The name is too short.'
         long: 'The name is too long.'
-FOS_group:
+fos_group:
     name:
         already_used: 'The name is already used.'

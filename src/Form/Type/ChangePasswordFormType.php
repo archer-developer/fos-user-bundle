@@ -40,7 +40,7 @@ final class ChangePasswordFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $constraintsOptions = [
-            'message' => 'FOS_user.current_password.invalid',
+            'message' => 'fos_user.current_password.invalid',
         ];
 
         if (null !== $options['validation_groups']) {
@@ -68,7 +68,7 @@ final class ChangePasswordFormType extends AbstractType
                 ],
                 'first_options'   => ['label' => 'form.new_password'],
                 'second_options'  => ['label' => 'form.new_password_confirmation'],
-                'invalid_message' => 'FOS_user.password.mismatch',
+                'invalid_message' => 'fos_user.password.mismatch',
             ])
             ->add('save', SubmitType::class, [
                 'label'  => 'change_password.submit',

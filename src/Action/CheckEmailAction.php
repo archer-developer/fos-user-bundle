@@ -52,7 +52,7 @@ final class CheckEmailAction
 
         if (null === $username || '' === trim($username)) {
             // the user does not come from the sendEmail action
-            return new RedirectResponse($this->router->generate('FOS_user_resetting_request'));
+            return new RedirectResponse($this->router->generate('fos_user_resetting_request'));
         }
 
         return new Response($this->twig->render('@FOSUser/Resetting/check_email.html.twig', [

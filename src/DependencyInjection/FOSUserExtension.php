@@ -70,7 +70,7 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
         if ('custom' !== $config['db_driver']) {
             if (isset(self::$doctrineDrivers[$config['db_driver']])) {
                 $loader->load('doctrine.php');
-                $container->setAlias('FOS_user.doctrine_registry', new Alias(self::$doctrineDrivers[$config['db_driver']]['registry'], false));
+                $container->setAlias('fos_user.doctrine_registry', new Alias(self::$doctrineDrivers[$config['db_driver']]['registry'], false));
             } else {
                 $loader->load(sprintf('%s.php', $config['db_driver']));
             }
@@ -78,8 +78,8 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
         }
 
         if (isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $definition = $container->getDefinition('FOS_user.object_manager');
-            $definition->setFactory([new Reference('FOS_user.doctrine_registry'), 'getManager']);
+            $definition = $container->getDefinition('fos_user.object_manager');
+            $definition->setFactory([new Reference('fos_user.doctrine_registry'), 'getManager']);
         }
 
         foreach (['validator', 'security', 'util', 'mailer', 'listeners', 'commands'] as $basename) {
@@ -87,7 +87,7 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
         }
 
         if (!$config['use_authentication_listener']) {
-            $container->removeDefinition('FOS_user.listener.authentication');
+            $container->removeDefinition('fos_user.listener.authentication');
         }
 
         if ($config['use_flash_notifications']) {
@@ -95,17 +95,17 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
             $loader->load('flash_notifications.php');
         }
 
-        $container->setAlias('FOS_user.util.email_canonicalizer', new Alias($config['service']['email_canonicalizer'], true));
-        $container->setAlias('FOS_user.util.username_canonicalizer', new Alias($config['service']['username_canonicalizer'], true));
+        $container->setAlias('fos_user.util.email_canonicalizer', new Alias($config['service']['email_canonicalizer'], true));
+        $container->setAlias('fos_user.util.username_canonicalizer', new Alias($config['service']['username_canonicalizer'], true));
 
-        $container->setAlias('FOS_user.util.token_generator', new Alias($config['service']['token_generator'], true));
+        $container->setAlias('fos_user.util.token_generator', new Alias($config['service']['token_generator'], true));
         $container->setAlias(TokenGeneratorInterface::class, new Alias($config['service']['token_generator'], true));
 
-        $container->setAlias('FOS_user.user_manager', new Alias($config['service']['user_manager'], true));
+        $container->setAlias('fos_user.user_manager', new Alias($config['service']['user_manager'], true));
         $container->setAlias(UserManagerInterface::class, new Alias($config['service']['user_manager'], true));
 
         if ($config['use_listener'] && isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $listenerDefinition = $container->getDefinition('FOS_user.user_listener');
+            $listenerDefinition = $container->getDefinition('fos_user.user_listener');
             $listenerDefinition->addTag(self::$doctrineDrivers[$config['db_driver']]['tag']);
             if (isset(self::$doctrineDrivers[$config['db_driver']]['listener_class'])) {
                 $listenerDefinition->setClass(self::$doctrineDrivers[$config['db_driver']]['listener_class']);
@@ -114,10 +114,10 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'db_driver'          => 'FOS_user.storage',
-                'firewall_name'      => 'FOS_user.firewall_name',
-                'model_manager_name' => 'FOS_user.model_manager_name',
-                'user_class'         => 'FOS_user.model.user.class',
+                'db_driver'          => 'fos_user.storage',
+                'firewall_name'      => 'fos_user.firewall_name',
+                'model_manager_name' => 'fos_user.model_manager_name',
+                'user_class'         => 'fos_user.model.user.class',
             ],
         ]);
 
@@ -129,19 +129,19 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
         }
 
         if ($this->mailerNeeded) {
-            $container->setAlias('FOS_user.mailer', new Alias($config['service']['mailer'], true));
+            $container->setAlias('fos_user.mailer', new Alias($config['service']['mailer'], true));
             $container->setAlias(MailerInterface::class, new Alias($config['service']['mailer'], true));
         }
 
         if ($this->sessionNeeded) {
             // Use a private alias rather than a parameter, to avoid leaking it at runtime (the private alias will be removed)
-            $container->setAlias('FOS_user.session', new Alias('session', false));
+            $container->setAlias('fos_user.session', new Alias('session', false));
         }
     }
 
     public function prepend(ContainerBuilder $container): void
     {
-        $configs = $container->getExtensionConfig('FOS_user');
+        $configs = $container->getExtensionConfig('fos_user');
 
         $storage = null;
         foreach ($configs as $config) {
@@ -215,14 +215,14 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
             unset($config['from_email']);
         }
 
-        $container->setParameter('FOS_user.resetting.from_email', $fromEmail);
+        $container->setParameter('fos_user.resetting.from_email', $fromEmail);
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'retry_ttl' => 'FOS_user.resetting.retry_ttl',
-                'token_ttl' => 'FOS_user.resetting.token_ttl',
+                'retry_ttl' => 'fos_user.resetting.retry_ttl',
+                'token_ttl' => 'fos_user.resetting.token_ttl',
             ],
-            'email' => 'FOS_user.resetting.email.%s',
+            'email' => 'fos_user.resetting.email.%s',
         ]);
     }
 
@@ -236,12 +236,12 @@ final class FOSUserExtension extends Extension implements PrependExtensionInterf
             }
         }
 
-        $container->setAlias('FOS_user.group_manager', new Alias($config['group_manager'], true));
-        $container->setAlias(GroupManagerInterface::class, new Alias('FOS_user.group_manager', true));
+        $container->setAlias('fos_user.group_manager', new Alias($config['group_manager'], true));
+        $container->setAlias(GroupManagerInterface::class, new Alias('fos_user.group_manager', true));
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'group_class' => 'FOS_user.model.group.class',
+                'group_class' => 'fos_user.model.group.class',
             ],
         ]);
     }

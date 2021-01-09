@@ -56,7 +56,7 @@ final class Mailer implements MailerInterface
      */
     public function sendResettingEmailMessage(UserInterface $user): void
     {
-        $url  = $this->router->generate('FOS_user_resetting_reset', [
+        $url  = $this->router->generate('fos_user_resetting_reset', [
             'token' => $user->getConfirmationToken(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 

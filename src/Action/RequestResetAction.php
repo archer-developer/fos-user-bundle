@@ -44,7 +44,7 @@ final class RequestResetAction
     public function __invoke(): Response
     {
         $form = $this->formFactory->create(RequestPasswordFormType::class, null, [
-            'action' => $this->router->generate('FOS_user_resetting_send_email'),
+            'action' => $this->router->generate('fos_user_resetting_send_email'),
             'method' => 'POST',
         ]);
 

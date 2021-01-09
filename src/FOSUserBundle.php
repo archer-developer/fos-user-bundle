@@ -39,11 +39,11 @@ final class FOSUserBundle extends Bundle
         ];
 
         if (class_exists(DoctrineOrmMappingsPass::class)) {
-            $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, ['FOS_user.model_manager_name'], 'FOS_user.backend_type_orm'));
+            $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, ['fos_user.model_manager_name'], 'fos_user.backend_type_orm'));
         }
 
         if (class_exists(DoctrineMongoDBMappingsPass::class)) {
-            $container->addCompilerPass(DoctrineMongoDBMappingsPass::createXmlMappingDriver($mappings, ['FOS_user.model_manager_name'], 'FOS_user.backend_type_mongodb'));
+            $container->addCompilerPass(DoctrineMongoDBMappingsPass::createXmlMappingDriver($mappings, ['fos_user.model_manager_name'], 'fos_user.backend_type_mongodb'));
         }
     }
 }

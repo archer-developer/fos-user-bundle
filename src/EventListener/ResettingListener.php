@@ -51,7 +51,7 @@ final class ResettingListener implements EventSubscriberInterface
     public function onResettingResetInitialize(GetResponseUserEvent $event): void
     {
         if (!$event->getUser()->isPasswordRequestNonExpired($this->tokenTtl)) {
-            $event->setResponse(new RedirectResponse($this->router->generate('FOS_user_resetting_request')));
+            $event->setResponse(new RedirectResponse($this->router->generate('fos_user_resetting_request')));
         }
     }
 
@@ -73,7 +73,7 @@ final class ResettingListener implements EventSubscriberInterface
     public function onResettingResetRequest(GetResponseUserEvent $event): void
     {
         if (!$event->getUser()->isAccountNonLocked()) {
-            $event->setResponse(new RedirectResponse($this->router->generate('FOS_user_resetting_request')));
+            $event->setResponse(new RedirectResponse($this->router->generate('fos_user_resetting_request')));
         }
     }
 }

@@ -78,7 +78,7 @@ final class LoginAction
         }
 
         $form = $this->formFactory->create(LoginFormType::class, null, [
-            'action' => $this->router->generate('FOS_user_security_check'),
+            'action' => $this->router->generate('fos_user_security_check'),
             'method' => 'POST',
         ]);
 
