@@ -20,24 +20,24 @@ use Symfony\Component\DependencyInjection\Reference;
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('FOS_user.user_manager.default', UserManager::class)
+        ->set('fos_user.user_manager.default', UserManager::class)
             ->args([
-                new Reference('FOS_user.util.password_updater'),
-                new Reference('FOS_user.util.canonical_fields_updater'),
-                new Reference('FOS_user.object_manager'),
-                new Parameter('FOS_user.model.user.class'),
+                new Reference('fos_user.util.password_updater'),
+                new Reference('fos_user.util.canonical_fields_updater'),
+                new Reference('fos_user.object_manager'),
+                new Parameter('fos_user.model.user.class'),
             ])
 
         // The factory is configured in the DI extension class to support more Symfony versions
-        ->set('FOS_user.object_manager', ObjectManager::class)
+        ->set('fos_user.object_manager', ObjectManager::class)
             ->args([
-                new Parameter('FOS_user.model_manager_name'),
+                new Parameter('fos_user.model_manager_name'),
             ])
 
-        ->set('FOS_user.user_listener', UserListener::class)
+        ->set('fos_user.user_listener', UserListener::class)
             ->args([
-                new Reference('FOS_user.util.password_updater'),
-                new Reference('FOS_user.util.canonical_fields_updater'),
+                new Reference('fos_user.util.password_updater'),
+                new Reference('fos_user.util.canonical_fields_updater'),
             ])
 
     ;

@@ -19,15 +19,15 @@ use Symfony\Component\DependencyInjection\Reference;
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('FOS_user.mailer.default', Mailer::class)
+        ->set('fos_user.mailer.default', Mailer::class)
             ->args([
                 new Reference('mailer.mailer'),
                 new Reference('translator'),
                 new Reference('router'),
-                new Parameter('FOS_user.resetting.from_email'),
+                new Parameter('fos_user.resetting.from_email'),
             ])
 
-        ->set('FOS_user.mailer.noop', NoopMailer::class)
+        ->set('fos_user.mailer.noop', NoopMailer::class)
 
     ;
 };

@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(Initializer::class)
             ->tag('validator.initializer')
             ->args([
-                new Reference('FOS_user.util.canonical_fields_updater'),
+                new Reference('fos_user.util.canonical_fields_updater'),
             ])
 
     ;

@@ -30,10 +30,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(LastLoginListener::class)
             ->tag('kernel.event_subscriber')
             ->args([
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
-        ->set('FOS_user.security.login_manager', LoginManager::class)
+        ->set('fos_user.security.login_manager', LoginManager::class)
             ->args([
                 new Reference('security.token_storage'),
                 new Reference('security.user_checker'),
@@ -42,21 +42,21 @@ return static function (ContainerConfigurator $container): void {
                 null,
             ])
 
-        ->alias(LoginManagerInterface::class, 'FOS_user.security.login_manager')
+        ->alias(LoginManagerInterface::class, 'fos_user.security.login_manager')
 
-        ->set('FOS_user.user_provider.username', UserProvider::class)
+        ->set('fos_user.user_provider.username', UserProvider::class)
             ->args([
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
-        ->set('FOS_user.user_provider.username_email', EmailUserProvider::class)
+        ->set('fos_user.user_provider.username_email', EmailUserProvider::class)
             ->args([
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
-        ->set('FOS_user.user_provider.email', EmailProvider::class)
+        ->set('fos_user.user_provider.email', EmailProvider::class)
             ->args([
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
         ->set(LoginFormType::class)

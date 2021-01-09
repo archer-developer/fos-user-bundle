@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-  <route id="FOS_user_resetting_request" path="/request" methods="GET">
+  <route id="fos_user_resetting_request" path="/request" methods="GET">
     <default key="_controller">FOS\UserBundle\Action\RequestResetAction</default>
   </route>
-  <route id="FOS_user_resetting_send_email" path="/send-email" methods="POST">
+  <route id="fos_user_resetting_send_email" path="/send-email" methods="POST">
     <default key="_controller">FOS\UserBundle\Action\SendEmailAction</default>
   </route>
-  <route id="FOS_user_resetting_check_email" path="/check-email" methods="GET">
+  <route id="fos_user_resetting_check_email" path="/check-email" methods="GET">
     <default key="_controller">FOS\UserBundle\Action\CheckEmailAction</default>
   </route>
-  <route id="FOS_user_resetting_reset" path="/reset/{token}" methods="GET POST">
+  <route id="fos_user_resetting_reset" path="/reset/{token}" methods="GET POST">
     <default key="_controller">FOS\UserBundle\Action\ResetAction</default>
   </route>
 </routes>

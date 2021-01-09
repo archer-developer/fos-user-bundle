@@ -22,8 +22,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(AuthenticationListener::class)
             ->tag('kernel.event_subscriber')
             ->args([
-                new Reference('FOS_user.security.login_manager'),
-                new Parameter('FOS_user.firewall_name'),
+                new Reference('fos_user.security.login_manager'),
+                new Parameter('fos_user.firewall_name'),
             ])
 
         ->set(LocaleEventListener::class)

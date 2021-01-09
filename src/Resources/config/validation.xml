@@ -3,32 +3,32 @@
   <class name="FOS\UserBundle\Model\User">
     <property name="username">
       <constraint name="NotBlank">
-        <option name="message">FOS_user.username.blank</option>
+        <option name="message">fos_user.username.blank</option>
       </constraint>
       <constraint name="Length">
         <option name="min">2</option>
-        <option name="minMessage">FOS_user.username.short</option>
+        <option name="minMessage">fos_user.username.short</option>
         <option name="max">180</option>
-        <option name="maxMessage">FOS_user.username.long</option>
+        <option name="maxMessage">fos_user.username.long</option>
       </constraint>
     </property>
     <property name="email">
       <constraint name="NotBlank">
-        <option name="message">FOS_user.email.blank</option>
+        <option name="message">fos_user.email.blank</option>
       </constraint>
       <constraint name="Length">
         <option name="min">2</option>
-        <option name="minMessage">FOS_user.email.short</option>
+        <option name="minMessage">fos_user.email.short</option>
         <option name="max">180</option>
-        <option name="maxMessage">FOS_user.email.long</option>
+        <option name="maxMessage">fos_user.email.long</option>
       </constraint>
       <constraint name="Email">
-        <option name="message">FOS_user.email.invalid</option>
+        <option name="message">fos_user.email.invalid</option>
       </constraint>
     </property>
     <property name="plainPassword">
       <constraint name="NotBlank">
-        <option name="message">FOS_user.password.blank</option>
+        <option name="message">fos_user.password.blank</option>
         <option name="groups">
           <value>ResetPassword</value>
           <value>ChangePassword</value>
@@ -37,7 +37,7 @@
       <constraint name="Length">
         <option name="min">8</option>
         <option name="max">4096</option>
-        <option name="minMessage">FOS_user.password.short</option>
+        <option name="minMessage">fos_user.password.short</option>
         <option name="groups">
           <value>ResetPassword</value>
           <value>ChangePassword</value>
@@ -48,13 +48,13 @@
   <class name="FOS\UserBundle\Model\Group">
     <property name="name">
       <constraint name="NotBlank">
-        <option name="message">FOS_user.group.blank</option>
+        <option name="message">fos_user.group.blank</option>
       </constraint>
       <constraint name="Length">
         <option name="min">2</option>
-        <option name="minMessage">FOS_user.group.short</option>
+        <option name="minMessage">fos_user.group.short</option>
         <option name="max">180</option>
-        <option name="maxMessage">FOS_user.group.long</option>
+        <option name="maxMessage">fos_user.group.long</option>
       </constraint>
     </property>
   </class>

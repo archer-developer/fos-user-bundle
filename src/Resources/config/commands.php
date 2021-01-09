@@ -27,7 +27,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:activate',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
         ->set(ChangePasswordCommand::class)
@@ -35,7 +35,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:change-password',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
         ->set(CreateUserCommand::class)
@@ -43,7 +43,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:create',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
         ->set(DeactivateUserCommand::class)
@@ -51,7 +51,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:deactivate',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
         ->set(DemoteUserCommand::class)
@@ -59,7 +59,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:demote',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
         ->set(PromoteUserCommand::class)
@@ -67,7 +67,7 @@ return static function (ContainerConfigurator $container): void {
                 'command' => 'FOS:user:promote',
             ])
             ->args([
-                new Reference('FOS_user.util.user_manipulator'),
+                new Reference('fos_user.util.user_manipulator'),
             ])
 
     ;

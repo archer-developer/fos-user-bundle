@@ -18,13 +18,13 @@ use Symfony\Component\DependencyInjection\Reference;
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('FOS_user.user_manager.default', UserManager::class)
+        ->set('fos_user.user_manager.default', UserManager::class)
             ->args([
-                new Reference('FOS_user.util.password_updater'),
-                new Reference('FOS_user.util.canonical_fields_updater'),
+                new Reference('fos_user.util.password_updater'),
+                new Reference('fos_user.util.canonical_fields_updater'),
             ])
 
-        ->set('FOS_user.user_listener', UserListener::class)
+        ->set('fos_user.user_listener', UserListener::class)
 
     ;
 };

@@ -18,10 +18,10 @@ use Symfony\Component\DependencyInjection\Reference;
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('FOS_user.group_manager.default', GroupManager::class)
+        ->set('fos_user.group_manager.default', GroupManager::class)
             ->args([
-                new Reference('FOS_user.object_manager'),
-                new Parameter('FOS_user.model.group.class'),
+                new Reference('fos_user.object_manager'),
+                new Parameter('fos_user.model.group.class'),
             ])
 
     ;

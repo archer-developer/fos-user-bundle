@@ -33,7 +33,7 @@ return static function (ContainerConfigurator $container): void {
                 new Reference('security.helper'),
                 new Reference('event_dispatcher'),
                 new Reference('form.factory'),
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
     ;

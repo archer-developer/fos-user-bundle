@@ -38,7 +38,7 @@ return static function (ContainerConfigurator $container): void {
             ->tag('kernel.event_subscriber')
             ->args([
                 new Reference('router'),
-                new Parameter('FOS_user.resetting.token_ttl'),
+                new Parameter('fos_user.resetting.token_ttl'),
             ])
 
         ->set(RequestResetAction::class)
@@ -56,7 +56,7 @@ return static function (ContainerConfigurator $container): void {
                 new Reference('router'),
                 new Reference('event_dispatcher'),
                 new Reference('form.factory'),
-                new Reference('FOS_user.user_manager'),
+                new Reference('fos_user.user_manager'),
             ])
 
         ->set(SendEmailAction::class)
@@ -64,10 +64,10 @@ return static function (ContainerConfigurator $container): void {
             ->args([
                 new Reference('router'),
                 new Reference('event_dispatcher'),
-                new Reference('FOS_user.user_manager'),
-                new Reference('FOS_user.util.token_generator'),
-                new Reference('FOS_user.mailer'),
-                new Parameter('FOS_user.resetting.retry_ttl'),
+                new Reference('fos_user.user_manager'),
+                new Reference('fos_user.util.token_generator'),
+                new Reference('fos_user.mailer'),
+                new Parameter('fos_user.resetting.retry_ttl'),
             ])
 
         ->set(CheckEmailAction::class)
@@ -75,7 +75,7 @@ return static function (ContainerConfigurator $container): void {
             ->args([
                 new Reference('twig'),
                 new Reference('router'),
-                new Parameter('FOS_user.resetting.retry_ttl'),
+                new Parameter('fos_user.resetting.retry_ttl'),
             ])
 
     ;
