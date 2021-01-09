@@ -21,7 +21,7 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('FOS_user');
+        $treeBuilder = new TreeBuilder('fos_user');
 
         $rootNode = $treeBuilder->getRootNode();
 

@@ -111,7 +111,7 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
         $this->roles   = [];
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getUsername();
     }
