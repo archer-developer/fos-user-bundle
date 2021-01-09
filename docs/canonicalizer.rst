@@ -1,7 +1,7 @@
 Canonicalization
 ================
 
-NucleosUserBundle stores canonicalized versions of the username and the email
+FOSUserBundle stores canonicalized versions of the username and the email
 which are used when querying and checking for uniqueness.
 The default implementation makes them case-insensitive to avoid having
 users whose username only differs because of the case. It uses :phpfunction:`mb_convert_case`
@@ -16,7 +16,7 @@ Replacing the canonicalizers
 ----------------------------
 
 If you want to change the way the canonical fields are populated,
-create a class implementing ``Nucleos\UserBundle\Util\CanonicalizerInterface``
+create a class implementing ``FOS\UserBundle\Util\CanonicalizerInterface``
 and register it as a service:
 
 .. code-block:: yaml
@@ -28,12 +28,12 @@ and register it as a service:
             public: false
 
 
-You can now configure NucleosUserBundle to use your own implementation:
+You can now configure FOSUserBundle to use your own implementation:
 
 .. code-block:: yaml
 
-    # config/packages/nucleos_user.yaml
-    nucleos_user:
+    # config/packages/FOS_user.yaml
+    FOS_user:
         # ...
         service:
             email_canonicalizer:    app.my_canonicalizer
@@ -44,4 +44,4 @@ to use the same logic.
 
 .. note::
 
-    The default implementation has the id ``nucleos_user.util.canonicalizer.default``.
+    The default implementation has the id ``FOS_user.util.canonicalizer.default``.

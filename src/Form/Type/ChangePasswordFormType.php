@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Form\Type;
+namespace FOS\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -40,7 +40,7 @@ final class ChangePasswordFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $constraintsOptions = [
-            'message' => 'nucleos_user.current_password.invalid',
+            'message' => 'FOS_user.current_password.invalid',
         ];
 
         if (null !== $options['validation_groups']) {
@@ -68,7 +68,7 @@ final class ChangePasswordFormType extends AbstractType
                 ],
                 'first_options'   => ['label' => 'form.new_password'],
                 'second_options'  => ['label' => 'form.new_password_confirmation'],
-                'invalid_message' => 'nucleos_user.password.mismatch',
+                'invalid_message' => 'FOS_user.password.mismatch',
             ])
             ->add('save', SubmitType::class, [
                 'label'  => 'change_password.submit',
@@ -81,7 +81,7 @@ final class ChangePasswordFormType extends AbstractType
         $resolver->setDefaults([
             'data_class'         => $this->class,
             'csrf_token_id'      => 'change_password',
-            'translation_domain' => 'NucleosUserBundle',
+            'translation_domain' => 'FOSUserBundle',
         ]);
     }
 }

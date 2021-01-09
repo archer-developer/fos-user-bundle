@@ -1,8 +1,8 @@
-{% extends "@NucleosUser/layout.html.twig" %}
+{% extends "@FOSUser/layout.html.twig" %}
 
-{% trans_default_domain 'NucleosUserBundle' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block nucleos_user_content %}
+{% block FOS_user_content %}
 <p>
 {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
 </p>

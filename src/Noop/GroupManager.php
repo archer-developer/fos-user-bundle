@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,15 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Noop;
+namespace FOS\UserBundle\Noop;
 
-use Nucleos\UserBundle\Model\GroupInterface;
-use Nucleos\UserBundle\Model\GroupManager as BaseGroupManager;
-use Nucleos\UserBundle\Noop\Exception\NoDriverException;
+use FOS\UserBundle\Model\GroupInterface;
+use FOS\UserBundle\Model\GroupManager as BaseGroupManager;
+use FOS\UserBundle\Noop\Exception\NoDriverException;
 
 /**
- * @phpstan-template GroupTemplate of \Nucleos\UserBundle\Model\GroupInterface
- * @phpstan-extends \Nucleos\UserBundle\Model\GroupManager<GroupTemplate>
+ * @phpstan-template GroupTemplate of \FOS\UserBundle\Model\GroupInterface
+ * @phpstan-extends \FOS\UserBundle\Model\GroupManager<GroupTemplate>
  */
 final class GroupManager extends BaseGroupManager
 {

@@ -3,9 +3,9 @@
 _extends: .github
 
 repository:
-  name: NucleosUserBundle
+  name: FOSUserBundle
   description: 👤 Lightweight user management for symfony.
-  homepage: https://docs.nucleos.rocks/projects/user-bundle/
+  homepage: https://docs.FOS.rocks/projects/user-bundle/
   topics: hacktoberfest, symfony, symfony-bundle, bundle, user, management
 
 branches:

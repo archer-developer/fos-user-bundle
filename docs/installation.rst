@@ -21,24 +21,24 @@ For more information about translations, check `Symfony documentation`_.
 Installation
 ------------
 
-1. Download NucleosUserBundle using composer
+1. Download FOSUserBundle using composer
 2. Enable the Bundle
 3. Create your User class
 4. Configure your application's security.yaml
-5. Configure the NucleosUserBundle
-6. Import NucleosUserBundle routing
+5. Configure the FOSUserBundle
+6. Import FOSUserBundle routing
 7. Update your database schema
 
-Step 1: Download NucleosUserBundle using composer
+Step 1: Download FOSUserBundle using composer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Require the bundle with composer:
 
 .. code-block:: bash
 
-    $ composer require nucleos/user-bundle
+    $ composer require FOS/user-bundle
 
-If you encounter installation errors pointing at a lack of configuration parameters, such as ``The child node "db_driver" at path "nucleos_user" must be configured``, you should complete the configuration in Step 5 first and then re-run this step.
+If you encounter installation errors pointing at a lack of configuration parameters, such as ``The child node "db_driver" at path "FOS_user" must be configured``, you should complete the configuration in Step 5 first and then re-run this step.
 
 Step 2: Enable the bundle
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,7 +50,7 @@ Enable the bundle in the kernel:
     // config/bundles.php
     return [
         // ...
-        Nucleos\UserBundle\NucleosUserBundle::class => ['all' => true],
+        FOS\UserBundle\FOSUserBundle::class => ['all' => true],
         // ...
     ]
 
@@ -103,11 +103,11 @@ start:
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Nucleos\UserBundle\Model\User as BaseUser;
+    use FOS\UserBundle\Model\User as BaseUser;
 
     /**
      * @ORM\Entity
-     * @ORM\Table(name="nucleos_user__user")
+     * @ORM\Table(name="FOS_user__user")
      */
     class User extends BaseUser
     {
@@ -142,7 +142,7 @@ this to start.
     namespace App\Document;
 
     use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-    use Nucleos\UserBundle\Model\User as BaseUser;
+    use FOS\UserBundle\Model\User as BaseUser;
 
     /**
      * @MongoDB\Document
@@ -165,11 +165,11 @@ this to start.
 Step 4: Configure your application's security.yaml
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order for Symfony's security component to use the NucleosUserBundle, you must
+In order for Symfony's security component to use the FOSUserBundle, you must
 tell it to do so in the ``security.yaml`` file. The ``security.yaml`` file is where the
 basic security configuration for your application is contained.
 
-Below is a minimal example of the configuration necessary to use the NucleosUserBundle
+Below is a minimal example of the configuration necessary to use the FOSUserBundle
 in your application:
 
 .. code-block:: yaml
@@ -177,21 +177,21 @@ in your application:
     # config/packages/security.yaml
     security:
         encoders:
-            Nucleos\UserBundle\Model\UserInterface: auto
+            FOS\UserBundle\Model\UserInterface: auto
 
         role_hierarchy:
             ROLE_ADMIN:       ROLE_USER
             ROLE_SUPER_ADMIN: ROLE_ADMIN
 
         providers:
-            nucleos_userbundle:
-                id: nucleos_user.user_provider.username
+            FOS_userbundle:
+                id: FOS_user.user_provider.username
 
         firewalls:
             main:
                 pattern: ^/
                 form_login:
-                    provider: nucleos_userbundle
+                    provider: FOS_userbundle
                     csrf_token_generator: security.csrf.token_manager
 
                 logout:       true
@@ -203,8 +203,8 @@ in your application:
             # - { path: ^/admin/, role: ROLE_ADMIN }
 
 Under the ``providers`` section, you are making the bundle's packaged user provider
-service available via the alias ``nucleos_userbundle``. The id of the bundle's user
-provider service is ``nucleos_user.user_provider.username``.
+service available via the alias ``FOS_userbundle``. The id of the bundle's user
+provider service is ``FOS_user.user_provider.username``.
 
 Next, take a look at and examine the ``firewalls`` section. Here we have
 declared a firewall named ``main``. By specifying ``form_login``, you have
@@ -217,7 +217,7 @@ authentication process.
 
 .. note::
 
-    Although we have used the form login mechanism in this example, the NucleosUserBundle
+    Although we have used the form login mechanism in this example, the FOSUserBundle
     user provider service is compatible with many other authentication methods
     as well. Please read the Symfony Security component documentation for
     more information on the other types of authentication methods.
@@ -238,23 +238,23 @@ For more information on configuring the ``security.yaml`` file please read the S
 .. note::
 
     Pay close attention to the name, ``main``, that we have given to the
-    firewall which the NucleosUserBundle is configured in. You will use this
-    in the next step when you configure the NucleosUserBundle.
+    firewall which the FOSUserBundle is configured in. You will use this
+    in the next step when you configure the FOSUserBundle.
 
-Step 5: Configure the NucleosUserBundle
+Step 5: Configure the FOSUserBundle
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that you have properly configured your application's ``security.yaml`` to work
-with the NucleosUserBundle, the next step is to configure the bundle to work with
+with the FOSUserBundle, the next step is to configure the bundle to work with
 the specific needs of your application.
 
-Add the following configuration to your ``config/packages/nucleos_user.yaml`` file according to which type
+Add the following configuration to your ``config/packages/FOS_user.yaml`` file according to which type
 of datastore you are using.
 
 .. code-block:: yaml
 
-    # config/packages/nucleos_user.yaml
-    nucleos_user:
+    # config/packages/FOS_user.yaml
+    FOS_user:
         db_driver: orm # other valid values is 'mongodb'
         firewall_name: main
         user_class: App\Entity\User
@@ -269,25 +269,25 @@ Only four configuration's nodes are required to use the bundle:
 
 .. note::
 
-    NucleosUserBundle uses a compiler pass to register mappings for the base
+    FOSUserBundle uses a compiler pass to register mappings for the base
     User and Group model classes with the object manager that you configured
     it to use. (Unless specified explicitly, this is the default manager
     of your doctrine configuration.)
 
-Step 6: Import NucleosUserBundle routing files
+Step 6: Import FOSUserBundle routing files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that you have activated and configured the bundle, all that is left to do is
-import the NucleosUserBundle routing files.
+import the FOSUserBundle routing files.
 
 By importing the routing files you will have ready made pages for things such as
 logging in, creating users, etc.
 
 .. code-block:: yaml
 
-    # config/routes/nucleos_user.yaml
-    nucleos_user:
-        resource: "@NucleosUserBundle/Resources/config/routing/all.xml"
+    # config/routes/FOS_user.yaml
+    FOS_user:
+        resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 Step 7: Update your database schema
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

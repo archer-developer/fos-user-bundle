@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Noop\GroupManager;
+use FOS\UserBundle\Noop\GroupManager;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('nucleos_user.group_manager.default', GroupManager::class)
+        ->set('FOS_user.group_manager.default', GroupManager::class)
 
     ;
 };

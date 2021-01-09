@@ -1,4 +1,4 @@
-nucleos_user:
+FOS_user:
     username:
         already_used: 'The username is already used.'
         blank: 'Please enter a username.'
@@ -23,6 +23,6 @@ nucleos_user:
         blank: 'Please enter a name.'
         short: 'The name is too short.'
         long: 'The name is too long.'
-nucleos_group:
+FOS_group:
     name:
         already_used: 'The name is already used.'

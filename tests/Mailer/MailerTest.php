@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Mailer;
+namespace FOS\UserBundle\Tests\Mailer;
 
-use Nucleos\UserBundle\Mailer\Mailer;
-use Nucleos\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Mailer\Mailer;
+use FOS\UserBundle\Model\UserInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Routing;
+namespace FOS\UserBundle\Tests\Routing;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
@@ -50,15 +50,15 @@ final class RoutingTest extends TestCase
      */
     public function loadRoutingProvider(): Generator
     {
-        yield ['nucleos_user_change_password', '/change-password', ['GET', 'POST']];
+        yield ['FOS_user_change_password', '/change-password', ['GET', 'POST']];
 
-        yield ['nucleos_user_resetting_request', '/resetting/request', ['GET']];
-        yield ['nucleos_user_resetting_send_email', '/resetting/send-email', ['POST']];
-        yield ['nucleos_user_resetting_check_email', '/resetting/check-email', ['GET']];
-        yield ['nucleos_user_resetting_reset', '/resetting/reset/{token}', ['GET', 'POST']];
+        yield ['FOS_user_resetting_request', '/resetting/request', ['GET']];
+        yield ['FOS_user_resetting_send_email', '/resetting/send-email', ['POST']];
+        yield ['FOS_user_resetting_check_email', '/resetting/check-email', ['GET']];
+        yield ['FOS_user_resetting_reset', '/resetting/reset/{token}', ['GET', 'POST']];
 
-        yield ['nucleos_user_security_login', '/login', ['GET', 'POST']];
-        yield ['nucleos_user_security_check', '/login_check', ['POST']];
-        yield ['nucleos_user_security_logout', '/logout', ['GET', 'POST']];
+        yield ['FOS_user_security_login', '/login', ['GET', 'POST']];
+        yield ['FOS_user_security_check', '/login_check', ['POST']];
+        yield ['FOS_user_security_logout', '/logout', ['GET', 'POST']];
     }
 }

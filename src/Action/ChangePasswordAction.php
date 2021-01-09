@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
-use Nucleos\UserBundle\Event\FilterUserResponseEvent;
-use Nucleos\UserBundle\Event\FormEvent;
-use Nucleos\UserBundle\Event\GetResponseUserEvent;
-use Nucleos\UserBundle\Form\Model\ChangePassword;
-use Nucleos\UserBundle\Form\Type\ChangePasswordFormType;
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Form\Model\ChangePassword;
+use FOS\UserBundle\Form\Type\ChangePasswordFormType;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,7 +92,7 @@ final class ChangePasswordAction
         }
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::CHANGE_PASSWORD_INITIALIZE);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::CHANGE_PASSWORD_INITIALIZE);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -106,23 +106,23 @@ final class ChangePasswordAction
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event = new FormEvent($form, $request);
-            $this->eventDispatcher->dispatch($event, NucleosUserEvents::CHANGE_PASSWORD_SUCCESS);
+            $this->eventDispatcher->dispatch($event, FOSUserEvents::CHANGE_PASSWORD_SUCCESS);
 
             $user->setPlainPassword($formModel->getPlainPassword());
 
             $this->userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url      = $this->router->generate('nucleos_user_security_loggedin');
+                $url      = $this->router->generate('FOS_user_security_loggedin');
                 $response = new RedirectResponse($url);
             }
 
-            $this->eventDispatcher->dispatch(new FilterUserResponseEvent($user, $request, $response), NucleosUserEvents::CHANGE_PASSWORD_COMPLETED);
+            $this->eventDispatcher->dispatch(new FilterUserResponseEvent($user, $request, $response), FOSUserEvents::CHANGE_PASSWORD_COMPLETED);
 
             return $response;
         }
 
-        return new Response($this->twig->render('@NucleosUser/ChangePassword/change_password.html.twig', [
+        return new Response($this->twig->render('@FOSUser/ChangePassword/change_password.html.twig', [
             'form' => $form->createView(),
         ]));
     }

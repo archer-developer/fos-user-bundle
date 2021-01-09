@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
 use RuntimeException;
 

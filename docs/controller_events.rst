@@ -1,14 +1,14 @@
 Hooking into the Controllers
 ============================
 
-The controllers packaged with the NucleosUserBundle provide a lot of
+The controllers packaged with the FOSUserBundle provide a lot of
 functionality that is sufficient for general use cases. But, you might find
 that you need to extend that functionality and add some logic that suits the
 specific needs of your application.
 
 For this purpose, the controllers are dispatching events in many places in
 their logic. All events can be found in the constants of the
-``Nucleos\UserBundle\NucleosUserEvents`` class.
+``FOS\UserBundle\FOSUserEvents`` class.
 
 All controllers follow the same convention: they dispatch a ``SUCCESS`` event
 when the form is valid before saving the user, and a ``COMPLETED`` event when
@@ -27,8 +27,8 @@ resetting to go to the homepage.
     // src/App/EventListener/PasswordResettingListener.php
     namespace App\EventListener;
 
-    use Nucleos\UserBundle\Event\FormEvent;
-    use Nucleos\UserBundle\NucleosUserEvents;
+    use FOS\UserBundle\Event\FormEvent;
+    use FOS\UserBundle\FOSUserEvents;
     use Symfony\Component\EventDispatcher\EventSubscriberInterface;
     use Symfony\Component\HttpFoundation\RedirectResponse;
     use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -48,7 +48,7 @@ resetting to go to the homepage.
         public static function getSubscribedEvents(): array
         {
             return [
-                NucleosUserEvents::RESETTING_RESET_SUCCESS => 'onPasswordResettingSuccess',
+                FOSUserEvents::RESETTING_RESET_SUCCESS => 'onPasswordResettingSuccess',
             ];
         }
 

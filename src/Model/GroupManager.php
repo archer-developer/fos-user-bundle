@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Model;
+namespace FOS\UserBundle\Model;
 
 /**
- * @phpstan-template GroupTemplate of \Nucleos\UserBundle\Model\GroupInterface
+ * @phpstan-template GroupTemplate of \FOS\UserBundle\Model\GroupInterface
  * @phpstan-implements GroupManagerInterface<GroupTemplate>
  */
 abstract class GroupManager implements GroupManagerInterface

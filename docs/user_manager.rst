@@ -2,27 +2,27 @@ User Manager
 ============
 
 In order to be storage agnostic, all operations on the user instances are
-handled by a user manager implementing ``Nucleos\UserBundle\Model\UserManagerInterface``.
+handled by a user manager implementing ``FOS\UserBundle\Model\UserManagerInterface``.
 Using it ensures that your code will continue to work if you change the storage.
 The controllers provided by the bundle use the configured user manager instead
 of interacting directly with the storage layer.
 
 If you configure the ``db_driver`` option to ``orm``, this service is an instance
-of ``Nucleos\UserBundle\Doctrine\UserManager``.
+of ``FOS\UserBundle\Doctrine\UserManager``.
 
 If you configure the ``db_driver`` option to ``mongodb``, this service is an
-instance of ``Nucleos\UserBundle\Doctrine\UserManager``.
+instance of ``FOS\UserBundle\Doctrine\UserManager``.
 
 
 Accessing the User Manager service
 ----------------------------------
 
-The user manager is available in the container as a ``Nucleos\UserBundle\Model\UserManagerInterface``
+The user manager is available in the container as a ``FOS\UserBundle\Model\UserManagerInterface``
 service.
 
 .. code-block:: php-annotations
 
-    use Nucleos\UserBundle\Model\UserManagerInterface;
+    use FOS\UserBundle\Model\UserManagerInterface;
 
     public function someAction(UserManagerInterface $manager)
     {
@@ -83,8 +83,8 @@ Updating a User object
 
 .. code-block:: yaml
 
-    # config/packages/nucleos_user.yaml
-    nucleos_user:
+    # config/packages/FOS_user.yaml
+    FOS_user:
         # ...
         use_listener: false
 
@@ -100,7 +100,7 @@ An ORM example:
 
 .. code-block:: php-annotations
 
-    use Nucleos\UserBundle\Model\UserManagerInterface;
+    use FOS\UserBundle\Model\UserManagerInterface;
 
     class MainController
     {
@@ -122,18 +122,18 @@ Overriding the User Manager
 ---------------------------
 
 You can replace the default implementation of the user manager by defining
-a service implementing ``Nucleos\UserBundle\Model\UserManagerInterface`` and
+a service implementing ``FOS\UserBundle\Model\UserManagerInterface`` and
 setting its id in the configuration.
-The id of the default implementation is ``nucleos_user.user_manager.default``
+The id of the default implementation is ``FOS_user.user_manager.default``
 
 .. code-block:: yaml
 
-    nucleos_user:
+    FOS_user:
         # ...
         service:
             user_manager: custom_user_manager_id
 
-Your custom implementation can extend ``Nucleos\UserBundle\Model\UserManager``
+Your custom implementation can extend ``FOS\UserBundle\Model\UserManager``
 to reuse the common logic.
 
 SecurityBundle integration

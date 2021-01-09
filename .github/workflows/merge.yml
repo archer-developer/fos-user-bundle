@@ -17,15 +17,15 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'automerge')
 
     steps:
-      - name: "Request review from @nucleos-bot"
+      - name: "Request review from @FOS-bot"
         uses: "actions/github-script@v3"
         with:
-          github-token: ${{ secrets.NUCLEOS_BOT_TOKEN }}
+          github-token: ${{ secrets.FOS_BOT_TOKEN }}
           script: |
             const pullRequest = context.payload.pull_request
             const repository = context.repo
             const reviewers = [
-              "nucleos-bot",
+              "FOS-bot",
             ]
             await github.pulls.requestReviewers({
               owner: repository.owner,
@@ -34,15 +34,15 @@ jobs:
               reviewers: reviewers,
             })
 
-      - name: "Assign @nucleos-bot"
+      - name: "Assign @FOS-bot"
         uses: "actions/github-script@v3"
         with:
-          github-token: ${{ secrets.NUCLEOS_BOT_TOKEN }}
+          github-token: ${{ secrets.FOS_BOT_TOKEN }}
           script: |
             const pullRequest = context.payload.pull_request
             const repository = context.repo
             const reviewers = [
-              "nucleos-bot",
+              "FOS-bot",
             ]
             await github.issues.addAssignees({
               assignees: reviewers,
@@ -53,9 +53,9 @@ jobs:
 
       - name: "Approve pull request"
         uses: "actions/github-script@v3"
-        if: "github.actor != 'nucleos-bot'"
+        if: "github.actor != 'FOS-bot'"
         with:
-          github-token: ${{ secrets.NUCLEOS_BOT_TOKEN }}
+          github-token: ${{ secrets.FOS_BOT_TOKEN }}
           script: |
             const pullRequest = context.payload.pull_request
             const repository = context.repo
@@ -69,7 +69,7 @@ jobs:
       - name: "Merge pull request"
         uses: "actions/github-script@v3"
         with:
-          github-token: ${{ secrets.NUCLEOS_BOT_TOKEN }}
+          github-token: ${{ secrets.FOS_BOT_TOKEN }}
           script: |
             const pullRequest = context.payload.pull_request
             const repository = context.repo

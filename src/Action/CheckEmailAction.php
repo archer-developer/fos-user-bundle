@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,10 +52,10 @@ final class CheckEmailAction
 
         if (null === $username || '' === trim($username)) {
             // the user does not come from the sendEmail action
-            return new RedirectResponse($this->router->generate('nucleos_user_resetting_request'));
+            return new RedirectResponse($this->router->generate('FOS_user_resetting_request'));
         }
 
-        return new Response($this->twig->render('@NucleosUser/Resetting/check_email.html.twig', [
+        return new Response($this->twig->render('@FOSUser/Resetting/check_email.html.twig', [
             'tokenLifetime' => ceil($this->retryTtl / 3600),
         ]));
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -12,32 +12,32 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Doctrine\Persistence\ObjectManager;
-use Nucleos\UserBundle\Doctrine\UserListener;
-use Nucleos\UserBundle\Doctrine\UserManager;
+use FOS\UserBundle\Doctrine\UserListener;
+use FOS\UserBundle\Doctrine\UserManager;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('nucleos_user.user_manager.default', UserManager::class)
+        ->set('FOS_user.user_manager.default', UserManager::class)
             ->args([
-                new Reference('nucleos_user.util.password_updater'),
-                new Reference('nucleos_user.util.canonical_fields_updater'),
-                new Reference('nucleos_user.object_manager'),
-                new Parameter('nucleos_user.model.user.class'),
+                new Reference('FOS_user.util.password_updater'),
+                new Reference('FOS_user.util.canonical_fields_updater'),
+                new Reference('FOS_user.object_manager'),
+                new Parameter('FOS_user.model.user.class'),
             ])
 
         // The factory is configured in the DI extension class to support more Symfony versions
-        ->set('nucleos_user.object_manager', ObjectManager::class)
+        ->set('FOS_user.object_manager', ObjectManager::class)
             ->args([
-                new Parameter('nucleos_user.model_manager_name'),
+                new Parameter('FOS_user.model_manager_name'),
             ])
 
-        ->set('nucleos_user.user_listener', UserListener::class)
+        ->set('FOS_user.user_listener', UserListener::class)
             ->args([
-                new Reference('nucleos_user.util.password_updater'),
-                new Reference('nucleos_user.util.canonical_fields_updater'),
+                new Reference('FOS_user.util.password_updater'),
+                new Reference('FOS_user.util.canonical_fields_updater'),
             ])
 
     ;

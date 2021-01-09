@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Validator\Initializer;
+use FOS\UserBundle\Validator\Initializer;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(Initializer::class)
             ->tag('validator.initializer')
             ->args([
-                new Reference('nucleos_user.util.canonical_fields_updater'),
+                new Reference('FOS_user.util.canonical_fields_updater'),
             ])
 
     ;

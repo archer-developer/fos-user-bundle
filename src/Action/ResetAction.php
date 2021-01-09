@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
-use Nucleos\UserBundle\Event\FilterUserResponseEvent;
-use Nucleos\UserBundle\Event\FormEvent;
-use Nucleos\UserBundle\Event\GetResponseUserEvent;
-use Nucleos\UserBundle\Form\Model\Resetting;
-use Nucleos\UserBundle\Form\Type\ResettingFormType;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Form\Model\Resetting;
+use FOS\UserBundle\Form\Type\ResettingFormType;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,11 +75,11 @@ final class ResetAction
         $user = $this->userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            return new RedirectResponse($this->router->generate('nucleos_user_security_login'));
+            return new RedirectResponse($this->router->generate('FOS_user_security_login'));
         }
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_RESET_INITIALIZE);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_RESET_INITIALIZE);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -93,26 +93,26 @@ final class ResetAction
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event = new FormEvent($form, $request);
-            $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_RESET_SUCCESS);
+            $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_RESET_SUCCESS);
 
             $user->setPlainPassword($formModel->getPlainPassword());
 
             $this->userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url      = $this->router->generate('nucleos_user_security_loggedin');
+                $url      = $this->router->generate('FOS_user_security_loggedin');
                 $response = new RedirectResponse($url);
             }
 
             $this->eventDispatcher->dispatch(
                 new FilterUserResponseEvent($user, $request, $response),
-                NucleosUserEvents::RESETTING_RESET_COMPLETED
+                FOSUserEvents::RESETTING_RESET_COMPLETED
             );
 
             return $response;
         }
 
-        return new Response($this->twig->render('@NucleosUser/Resetting/reset.html.twig', [
+        return new Response($this->twig->render('@FOSUser/Resetting/reset.html.twig', [
             'token' => $token,
             'form'  => $form->createView(),
         ]));

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,8 +11,8 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\EventListener\AuthenticationListener;
-use Nucleos\UserBundle\EventListener\LocaleEventListener;
+use FOS\UserBundle\EventListener\AuthenticationListener;
+use FOS\UserBundle\EventListener\LocaleEventListener;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -22,8 +22,8 @@ return static function (ContainerConfigurator $container): void {
         ->set(AuthenticationListener::class)
             ->tag('kernel.event_subscriber')
             ->args([
-                new Reference('nucleos_user.security.login_manager'),
-                new Parameter('nucleos_user.firewall_name'),
+                new Reference('FOS_user.security.login_manager'),
+                new Parameter('FOS_user.firewall_name'),
             ])
 
         ->set(LocaleEventListener::class)

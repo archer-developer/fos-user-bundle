@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\App;
+namespace FOS\UserBundle\Tests\App;
 
-use Nucleos\UserBundle\NucleosUserBundle;
+use FOS\UserBundle\FOSUserBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
@@ -37,7 +37,7 @@ final class AppKernel extends Kernel
         yield new FrameworkBundle();
         yield new TwigBundle();
         yield new SecurityBundle();
-        yield new NucleosUserBundle();
+        yield new FOSUserBundle();
     }
 
     public function getCacheDir(): string

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\DependencyInjection;
+namespace FOS\UserBundle\Tests\DependencyInjection;
 
 use Generator;
-use Nucleos\UserBundle\DependencyInjection\NucleosUserExtension;
-use Nucleos\UserBundle\EventListener\FlashListener;
+use FOS\UserBundle\DependencyInjection\FOSUserExtension;
+use FOS\UserBundle\EventListener\FlashListener;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,7 +25,7 @@ use Symfony\Component\Yaml\Parser;
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-final class NucleosUserExtensionTest extends TestCase
+final class FOSUserExtensionTest extends TestCase
 {
     /**
      * @var ContainerBuilder
@@ -36,7 +36,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $loader              = new NucleosUserExtension();
+        $loader              = new FOSUserExtension();
         $config              = $this->getEmptyConfig();
         $config['db_driver'] = 'foo';
         $loader->load([$config], new ContainerBuilder());
@@ -46,7 +46,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $loader = new NucleosUserExtension();
+        $loader = new FOSUserExtension();
         $config = $this->getEmptyConfig();
         unset($config['firewall_name']);
         $loader->load([$config], new ContainerBuilder());
@@ -56,7 +56,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $loader = new NucleosUserExtension();
+        $loader = new FOSUserExtension();
         $config = $this->getFullConfig();
         unset($config['group']['group_class']);
         $loader->load([$config], new ContainerBuilder());
@@ -66,7 +66,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $loader = new NucleosUserExtension();
+        $loader = new FOSUserExtension();
         $config = $this->getEmptyConfig();
         unset($config['user_class']);
         $loader->load([$config], new ContainerBuilder());
@@ -76,7 +76,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $this->expectException(InvalidConfigurationException::class);
 
-        $loader              = new NucleosUserExtension();
+        $loader              = new FOSUserExtension();
         $config              = $this->getEmptyConfig();
         $config['db_driver'] = 'custom';
         $loader->load([$config], new ContainerBuilder());
@@ -85,67 +85,67 @@ final class NucleosUserExtensionTest extends TestCase
     public function testCustomDriver(): void
     {
         $this->configuration               = new ContainerBuilder();
-        $loader                            = new NucleosUserExtension();
+        $loader                            = new FOSUserExtension();
         $config                            = $this->getEmptyConfig();
         $config['db_driver']               = 'custom';
         $config['service']['user_manager'] = 'acme.user_manager';
         $loader->load([$config], $this->configuration);
 
-        $this->assertNotHasDefinition('nucleos_user.user_manager.default');
-        $this->assertAlias('acme.user_manager', 'nucleos_user.user_manager');
-        $this->assertParameter('custom', 'nucleos_user.storage');
+        $this->assertNotHasDefinition('FOS_user.user_manager.default');
+        $this->assertAlias('acme.user_manager', 'FOS_user.user_manager');
+        $this->assertParameter('custom', 'FOS_user.storage');
     }
 
     public function testUserLoadModelClassWithDefaults(): void
     {
         $this->createEmptyConfiguration();
 
-        $this->assertParameter('Acme\MyBundle\Document\User', 'nucleos_user.model.user.class');
+        $this->assertParameter('Acme\MyBundle\Document\User', 'FOS_user.model.user.class');
     }
 
     public function testUserLoadModelClass(): void
     {
         $this->createFullConfiguration();
 
-        $this->assertParameter('Acme\MyBundle\Entity\User', 'nucleos_user.model.user.class');
+        $this->assertParameter('Acme\MyBundle\Entity\User', 'FOS_user.model.user.class');
     }
 
     public function testUserLoadManagerClassWithDefaults(): void
     {
         $this->createEmptyConfiguration();
 
-        $this->assertParameter('mongodb', 'nucleos_user.storage');
-        $this->assertParameter(null, 'nucleos_user.model_manager_name');
-        $this->assertAlias('nucleos_user.user_manager.default', 'nucleos_user.user_manager');
-        $this->assertNotHasDefinition('nucleos_user.group_manager');
+        $this->assertParameter('mongodb', 'FOS_user.storage');
+        $this->assertParameter(null, 'FOS_user.model_manager_name');
+        $this->assertAlias('FOS_user.user_manager.default', 'FOS_user.user_manager');
+        $this->assertNotHasDefinition('FOS_user.group_manager');
     }
 
     public function testUserLoadManagerClass(): void
     {
         $this->createFullConfiguration();
 
-        $this->assertParameter('orm', 'nucleos_user.storage');
-        $this->assertParameter('custom', 'nucleos_user.model_manager_name');
-        $this->assertAlias('acme_my.user_manager', 'nucleos_user.user_manager');
-        $this->assertAlias('nucleos_user.group_manager.default', 'nucleos_user.group_manager');
+        $this->assertParameter('orm', 'FOS_user.storage');
+        $this->assertParameter('custom', 'FOS_user.model_manager_name');
+        $this->assertAlias('acme_my.user_manager', 'FOS_user.user_manager');
+        $this->assertAlias('FOS_user.group_manager.default', 'FOS_user.group_manager');
     }
 
     public function testUserLoadUtilServiceWithDefaults(): void
     {
         $this->createEmptyConfiguration();
 
-        $this->assertAlias('nucleos_user.mailer.default', 'nucleos_user.mailer');
-        $this->assertAlias('nucleos_user.util.canonicalizer.default', 'nucleos_user.util.email_canonicalizer');
-        $this->assertAlias('nucleos_user.util.canonicalizer.default', 'nucleos_user.util.username_canonicalizer');
+        $this->assertAlias('FOS_user.mailer.default', 'FOS_user.mailer');
+        $this->assertAlias('FOS_user.util.canonicalizer.default', 'FOS_user.util.email_canonicalizer');
+        $this->assertAlias('FOS_user.util.canonicalizer.default', 'FOS_user.util.username_canonicalizer');
     }
 
     public function testUserLoadUtilService(): void
     {
         $this->createFullConfiguration();
 
-        $this->assertAlias('acme_my.mailer', 'nucleos_user.mailer');
-        $this->assertAlias('acme_my.email_canonicalizer', 'nucleos_user.util.email_canonicalizer');
-        $this->assertAlias('acme_my.username_canonicalizer', 'nucleos_user.util.username_canonicalizer');
+        $this->assertAlias('acme_my.mailer', 'FOS_user.mailer');
+        $this->assertAlias('acme_my.email_canonicalizer', 'FOS_user.util.email_canonicalizer');
+        $this->assertAlias('acme_my.username_canonicalizer', 'FOS_user.util.username_canonicalizer');
     }
 
     public function testUserLoadFlashesByDefault(): void
@@ -168,20 +168,20 @@ final class NucleosUserExtensionTest extends TestCase
     public function testUserManagerSetFactory(string $dbDriver, string $doctrineService): void
     {
         $this->configuration = new ContainerBuilder();
-        $loader              = new NucleosUserExtension();
+        $loader              = new FOSUserExtension();
         $config              = $this->getEmptyConfig();
         $config['db_driver'] = $dbDriver;
         $loader->load([$config], $this->configuration);
 
-        $definition = $this->configuration->getDefinition('nucleos_user.object_manager');
+        $definition = $this->configuration->getDefinition('FOS_user.object_manager');
 
-        $this->assertAlias($doctrineService, 'nucleos_user.doctrine_registry');
+        $this->assertAlias($doctrineService, 'FOS_user.doctrine_registry');
 
         $factory = $definition->getFactory();
 
         static::assertIsArray($factory);
         static::assertInstanceOf(Reference::class, $factory[0]);
-        static::assertSame('nucleos_user.doctrine_registry', (string) $factory[0]);
+        static::assertSame('FOS_user.doctrine_registry', (string) $factory[0]);
         static::assertSame('getManager', $factory[1]);
     }
 
@@ -197,7 +197,7 @@ final class NucleosUserExtensionTest extends TestCase
     protected function createEmptyConfiguration(): void
     {
         $this->configuration = new ContainerBuilder();
-        $loader              = new NucleosUserExtension();
+        $loader              = new FOSUserExtension();
         $config              = $this->getEmptyConfig();
         $loader->load([$config], $this->configuration);
         static::assertInstanceOf(ContainerBuilder::class, $this->configuration);
@@ -206,7 +206,7 @@ final class NucleosUserExtensionTest extends TestCase
     protected function createFullConfiguration(): void
     {
         $this->configuration = new ContainerBuilder();
-        $loader              = new NucleosUserExtension();
+        $loader              = new FOSUserExtension();
         $config              = $this->getFullConfig();
         $loader->load([$config], $this->configuration);
         static::assertInstanceOf(ContainerBuilder::class, $this->configuration);
@@ -216,7 +216,7 @@ final class NucleosUserExtensionTest extends TestCase
     {
         $yaml = <<<'EOF'
 db_driver: mongodb
-firewall_name: nucleos_user
+firewall_name: FOS_user
 user_class: Acme\MyBundle\Document\User
 from_email: Acme Corp <admin@acme.org>
 EOF;
@@ -229,7 +229,7 @@ EOF;
     {
         $yaml = <<<'EOF'
 db_driver: orm
-firewall_name: nucleos_user
+firewall_name: FOS_user
 use_listener: true
 use_flash_notifications: false
 user_class: Acme\MyBundle\Entity\User

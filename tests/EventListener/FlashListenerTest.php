@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\EventListener;
+namespace FOS\UserBundle\Tests\EventListener;
 
-use Nucleos\UserBundle\EventListener\FlashListener;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\EventListener\FlashListener;
+use FOS\UserBundle\FOSUserEvents;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Contracts\EventDispatcher\Event;
@@ -51,6 +51,6 @@ final class FlashListenerTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        $this->listener->addSuccessFlash($this->event, NucleosUserEvents::CHANGE_PASSWORD_COMPLETED);
+        $this->listener->addSuccessFlash($this->event, FOSUserEvents::CHANGE_PASSWORD_COMPLETED);
     }
 }

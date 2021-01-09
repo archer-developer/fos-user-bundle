@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Form\Type;
+namespace FOS\UserBundle\Tests\Form\Type;
 
-use Nucleos\UserBundle\Form\Model\ChangePassword;
-use Nucleos\UserBundle\Form\Type\ChangePasswordFormType;
+use FOS\UserBundle\Form\Model\ChangePassword;
+use FOS\UserBundle\Form\Type\ChangePasswordFormType;
 
 final class ChangePasswordFormTypeTest extends ValidatorExtensionTypeTestCase
 {

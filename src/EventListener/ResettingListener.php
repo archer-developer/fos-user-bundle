@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\EventListener;
+namespace FOS\UserBundle\EventListener;
 
-use Nucleos\UserBundle\Event\FormEvent;
-use Nucleos\UserBundle\Event\GetResponseUserEvent;
-use Nucleos\UserBundle\Form\Model\Resetting;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Form\Model\Resetting;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -42,16 +42,16 @@ final class ResettingListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            NucleosUserEvents::RESETTING_RESET_INITIALIZE => 'onResettingResetInitialize',
-            NucleosUserEvents::RESETTING_RESET_SUCCESS    => 'onResettingResetSuccess',
-            NucleosUserEvents::RESETTING_RESET_REQUEST    => 'onResettingResetRequest',
+            FOSUserEvents::RESETTING_RESET_INITIALIZE => 'onResettingResetInitialize',
+            FOSUserEvents::RESETTING_RESET_SUCCESS    => 'onResettingResetSuccess',
+            FOSUserEvents::RESETTING_RESET_REQUEST    => 'onResettingResetRequest',
         ];
     }
 
     public function onResettingResetInitialize(GetResponseUserEvent $event): void
     {
         if (!$event->getUser()->isPasswordRequestNonExpired($this->tokenTtl)) {
-            $event->setResponse(new RedirectResponse($this->router->generate('nucleos_user_resetting_request')));
+            $event->setResponse(new RedirectResponse($this->router->generate('FOS_user_resetting_request')));
         }
     }
 
@@ -73,7 +73,7 @@ final class ResettingListener implements EventSubscriberInterface
     public function onResettingResetRequest(GetResponseUserEvent $event): void
     {
         if (!$event->getUser()->isAccountNonLocked()) {
-            $event->setResponse(new RedirectResponse($this->router->generate('nucleos_user_resetting_request')));
+            $event->setResponse(new RedirectResponse($this->router->generate('FOS_user_resetting_request')));
         }
     }
 }

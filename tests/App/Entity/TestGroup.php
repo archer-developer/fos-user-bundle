@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\App\Entity;
+namespace FOS\UserBundle\Tests\App\Entity;
 
-use Nucleos\UserBundle\Model\Group;
+use FOS\UserBundle\Model\Group;
 
 class TestGroup extends Group
 {

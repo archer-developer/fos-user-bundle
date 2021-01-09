@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,48 +11,48 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\Util\CanonicalFieldsUpdater;
-use Nucleos\UserBundle\Util\Canonicalizer;
-use Nucleos\UserBundle\Util\PasswordUpdater;
-use Nucleos\UserBundle\Util\PasswordUpdaterInterface;
-use Nucleos\UserBundle\Util\TokenGenerator;
-use Nucleos\UserBundle\Util\TokenGeneratorInterface;
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Util\CanonicalFieldsUpdater;
+use FOS\UserBundle\Util\Canonicalizer;
+use FOS\UserBundle\Util\PasswordUpdater;
+use FOS\UserBundle\Util\PasswordUpdaterInterface;
+use FOS\UserBundle\Util\TokenGenerator;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
+use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('nucleos_user.util.canonicalizer.default', Canonicalizer::class)
+        ->set('FOS_user.util.canonicalizer.default', Canonicalizer::class)
 
-        ->set('nucleos_user.util.user_manipulator', UserManipulator::class)
+        ->set('FOS_user.util.user_manipulator', UserManipulator::class)
             ->args([
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
                 new Reference('event_dispatcher'),
                 new Reference('request_stack'),
             ])
 
-        ->set('nucleos_user.util.token_generator.default', TokenGenerator::class)
+        ->set('FOS_user.util.token_generator.default', TokenGenerator::class)
 
-        ->alias(TokenGeneratorInterface::class, 'nucleos_user.util.token_generator')
+        ->alias(TokenGeneratorInterface::class, 'FOS_user.util.token_generator')
 
-        ->set('nucleos_user.util.password_updater', PasswordUpdater::class)
+        ->set('FOS_user.util.password_updater', PasswordUpdater::class)
             ->args([
                 new Reference('security.encoder_factory'),
             ])
 
-        ->alias(PasswordUpdaterInterface::class, 'nucleos_user.util.password_updater')
+        ->alias(PasswordUpdaterInterface::class, 'FOS_user.util.password_updater')
 
-        ->set('nucleos_user.util.canonical_fields_updater', CanonicalFieldsUpdater::class)
+        ->set('FOS_user.util.canonical_fields_updater', CanonicalFieldsUpdater::class)
             ->args([
-                new Reference('nucleos_user.util.username_canonicalizer'),
-                new Reference('nucleos_user.util.email_canonicalizer'),
+                new Reference('FOS_user.util.username_canonicalizer'),
+                new Reference('FOS_user.util.email_canonicalizer'),
             ])
 
-        ->alias(CanonicalFieldsUpdater::class, 'nucleos_user.util.canonical_fields_updater')
+        ->alias(CanonicalFieldsUpdater::class, 'FOS_user.util.canonical_fields_updater')
 
-        ->alias(UserManagerInterface::class, 'nucleos_user.user_manager')
+        ->alias(UserManagerInterface::class, 'FOS_user.user_manager')
 
     ;
 };

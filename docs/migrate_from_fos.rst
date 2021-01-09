@@ -11,28 +11,28 @@ Start migration
 ---------------
 
 The main difference between both bundles is the service and configuration prefix. FOS uses `fos_user` and our bundles
-uses `nucleos_user` (respectively `nucleos_profile`)
+uses `FOS_user` (respectively `FOS_profile`)
 
 Step 1: Update configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install this bundle and the `NucleosProfileBundle`_:
+Install this bundle and the `FOSProfileBundle`_:
 
 .. code-block:: bash
 
-    $ composer require nucleos/user-bundle nucleos/profile-bundle
+    $ composer require FOS/user-bundle FOS/profile-bundle
 
 Step 2: Update configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Inside the configurations under `config/packages/` you need to replace the prefix `fos_user` with `nucleos_user` for
-the most keys. Some keys related to profile management or registration need a `nucleos_profile` prefix.
+Inside the configurations under `config/packages/` you need to replace the prefix `fos_user` with `FOS_user` for
+the most keys. Some keys related to profile management or registration need a `FOS_profile` prefix.
 
 Step 3: Update routing
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The same rule applies for the routing files located under `config/routes`.
-You need to replace the `@FOSUserBundle` import with `@NucleosProfileBundle`.
+You need to replace the `@FOSUserBundle` import with `@FOSProfileBundle`.
 
 Step 4: Clean cache
 ~~~~~~~~~~~~~~~~~~~
@@ -56,7 +56,7 @@ Require the bundle with composer:
 
 .. code-block:: bash
 
-    $ composer require nucleos/fos-user-bundle-polyfill
+    $ composer require FOS/fos-user-bundle-polyfill
 
 .. warning::
 
@@ -74,7 +74,7 @@ If you have problems feel free to open an issue or have a look at the docs as th
 - E-Mail address and Usernames are non-nullable
 - Forms do not use the user model and have specific form models
 
-.. _NucleosProfileBundle: https://github.com/nucleos/NucleosProfileBundle/
+.. _FOSProfileBundle: https://github.com/FOS/FOSProfileBundle/
 .. _FOSUserBundle: https://github.com/FriendsOfSymfony/FOSUserBundle/
 .. _supported PHP version: https://www.php.net/supported-versions.php
 .. _supported symfony version: https://symfony.com/releases

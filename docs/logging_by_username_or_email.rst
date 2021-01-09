@@ -11,5 +11,5 @@ using only the username:
     # config/packages/security.yaml
     security:
         providers:
-            nucleos_userbundle:
-                id: nucleos_user.user_provider.username_email
+            FOS_userbundle:
+                id: FOS_user.user_provider.username_email

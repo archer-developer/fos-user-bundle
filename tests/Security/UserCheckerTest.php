@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Security;
+namespace FOS\UserBundle\Tests\Security;
 
 use Exception;
-use Nucleos\UserBundle\Model\Group;
-use Nucleos\UserBundle\Model\User;
-use Nucleos\UserBundle\Security\UserChecker;
+use FOS\UserBundle\Model\Group;
+use FOS\UserBundle\Model\User;
+use FOS\UserBundle\Security\UserChecker;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Exception\AccountExpiredException;

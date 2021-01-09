@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Util;
+namespace FOS\UserBundle\Util;
 
-use Nucleos\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserInterface;
 
 class CanonicalFieldsUpdater
 {

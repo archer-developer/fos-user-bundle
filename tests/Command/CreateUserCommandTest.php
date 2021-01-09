@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Command;
+namespace FOS\UserBundle\Tests\Command;
 
-use Nucleos\UserBundle\Command\CreateUserCommand;
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Command\CreateUserCommand;
+use FOS\UserBundle\Util\UserManipulator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -84,7 +84,7 @@ final class CreateUserCommandTest extends TestCase
 
         $application->add($command);
 
-        return new CommandTester($application->find('nucleos:user:create'));
+        return new CommandTester($application->find('FOS:user:create'));
     }
 
     /**

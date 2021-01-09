@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Model;
+namespace FOS\UserBundle\Model;
 
-use Nucleos\UserBundle\Util\CanonicalFieldsUpdater;
-use Nucleos\UserBundle\Util\PasswordUpdaterInterface;
+use FOS\UserBundle\Util\CanonicalFieldsUpdater;
+use FOS\UserBundle\Util\PasswordUpdaterInterface;
 
 abstract class UserManager implements UserManagerInterface
 {

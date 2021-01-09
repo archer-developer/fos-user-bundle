@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<EOF
-This file is part of the NucleosUserBundle package.
+This file is part of the FOSUserBundle package.
 
 (c) Christian Gripp <mail@core23.de>
 

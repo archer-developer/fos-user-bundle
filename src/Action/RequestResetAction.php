@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
-use Nucleos\UserBundle\Form\Type\RequestPasswordFormType;
+use FOS\UserBundle\Form\Type\RequestPasswordFormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -44,11 +44,11 @@ final class RequestResetAction
     public function __invoke(): Response
     {
         $form = $this->formFactory->create(RequestPasswordFormType::class, null, [
-            'action' => $this->router->generate('nucleos_user_resetting_send_email'),
+            'action' => $this->router->generate('FOS_user_resetting_send_email'),
             'method' => 'POST',
         ]);
 
-        return new Response($this->twig->render('@NucleosUser/Resetting/request.html.twig', [
+        return new Response($this->twig->render('@FOSUser/Resetting/request.html.twig', [
             'form' => $form->createView(),
         ]));
     }

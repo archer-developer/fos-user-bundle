@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Mailer\Mail;
+namespace FOS\UserBundle\Mailer\Mail;
 
-use Nucleos\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mime\Header\Headers;
 use Symfony\Component\Mime\Part\AbstractPart;
@@ -32,7 +32,7 @@ final class ResettingMail extends TemplatedEmail
     {
         parent::__construct($headers, $body);
 
-        $this->htmlTemplate('@NucleosUser/Resetting/email.txt.twig');
+        $this->htmlTemplate('@FOSUser/Resetting/email.txt.twig');
     }
 
     public function setConfirmationUrl(string $confirmationUrl): self

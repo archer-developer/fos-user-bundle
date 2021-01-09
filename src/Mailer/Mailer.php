@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Mailer;
+namespace FOS\UserBundle\Mailer;
 
-use Nucleos\UserBundle\Mailer\Mail\ResettingMail;
-use Nucleos\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Mailer\Mail\ResettingMail;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface as SymfonyMailer;
 use Symfony\Component\Mime\Address;
@@ -56,7 +56,7 @@ final class Mailer implements MailerInterface
      */
     public function sendResettingEmailMessage(UserInterface $user): void
     {
-        $url  = $this->router->generate('nucleos_user_resetting_reset', [
+        $url  = $this->router->generate('FOS_user_resetting_reset', [
             'token' => $user->getConfirmationToken(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -65,7 +65,7 @@ final class Mailer implements MailerInterface
             ->to(new Address($user->getEmail()))
             ->subject($this->translator->trans('resetting.email.subject', [
                 '%username%' => $user->getUsername(),
-            ], 'NucleosUserBundle'))
+            ], 'FOSUserBundle'))
             ->setUser($user)
             ->setConfirmationUrl($url)
         ;

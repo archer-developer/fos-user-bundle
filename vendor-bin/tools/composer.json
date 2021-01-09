@@ -1,5 +1,5 @@
 {
-    "name": "nucleos/dev-tools",
+    "name": "FOS/dev-tools",
     "type": "project",
     "description": "Development tools that do not conflict the project dependencies",
     "require-dev": {

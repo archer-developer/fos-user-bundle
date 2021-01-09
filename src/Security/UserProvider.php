@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Security;
+namespace FOS\UserBundle\Security;
 
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
@@ -49,7 +49,7 @@ class UserProvider implements UserProviderInterface
     public function refreshUser(SecurityUserInterface $user): UserInterface
     {
         if (!$user instanceof UserInterface) {
-            throw new UnsupportedUserException(sprintf('Expected an instance of Nucleos\UserBundle\Model\UserInterface, but got "%s".', \get_class($user)));
+            throw new UnsupportedUserException(sprintf('Expected an instance of FOS\UserBundle\Model\UserInterface, but got "%s".', \get_class($user)));
         }
 
         if (!$this->supportsClass(\get_class($user))) {

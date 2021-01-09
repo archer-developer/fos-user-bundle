@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Command;
+namespace FOS\UserBundle\Command;
 
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Util\UserManipulator;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,7 +27,7 @@ final class CreateUserCommand extends Command
     /**
      * @var string
      */
-    protected static $defaultName = 'nucleos:user:create';
+    protected static $defaultName = 'FOS:user:create';
 
     /**
      * @var UserManipulator
@@ -44,7 +44,7 @@ final class CreateUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('nucleos:user:create')
+            ->setName('FOS:user:create')
             ->setDescription('Create a user.')
             ->setDefinition([
                 new InputArgument('username', InputArgument::REQUIRED, 'The username'),
@@ -55,7 +55,7 @@ final class CreateUserCommand extends Command
             ])
             ->setHelp(
                 <<<'EOT'
-The <info>nucleos:user:create</info> command creates a user:
+The <info>FOS:user:create</info> command creates a user:
 
   <info>php %command.full_name% matthieu</info>
 

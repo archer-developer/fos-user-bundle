@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,15 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Doctrine;
+namespace FOS\UserBundle\Tests\Doctrine;
 
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
-use Nucleos\UserBundle\Doctrine\UserManager;
-use Nucleos\UserBundle\Tests\App\Entity\TestUser;
-use Nucleos\UserBundle\Util\CanonicalFieldsUpdater;
-use Nucleos\UserBundle\Util\PasswordUpdaterInterface;
+use FOS\UserBundle\Doctrine\UserManager;
+use FOS\UserBundle\Tests\App\Entity\TestUser;
+use FOS\UserBundle\Util\CanonicalFieldsUpdater;
+use FOS\UserBundle\Util\PasswordUpdaterInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

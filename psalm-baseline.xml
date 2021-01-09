@@ -42,7 +42,7 @@
       <code>public function findGroups(): array;</code>
     </InvalidDocblock>
   </file>
-  <file src="src/NucleosUserBundle.php">
+  <file src="src/FOSUserBundle.php">
     <InvalidScalarArgument occurrences="2">
       <code>$mappings</code>
       <code>$mappings</code>

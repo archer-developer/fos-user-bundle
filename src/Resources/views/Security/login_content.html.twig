@@ -1,4 +1,4 @@
-{% trans_default_domain 'NucleosUserBundle' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_errors(form) }}
 
@@ -9,7 +9,7 @@
         {{ form_widget(form) }}
 
         <div>
-            <a href="{{ path('nucleos_user_resetting_request') }}">
+            <a href="{{ path('FOS_user_resetting_request') }}">
                 {{ 'security.forgotten_password'|trans }}
             </a>
         </div>

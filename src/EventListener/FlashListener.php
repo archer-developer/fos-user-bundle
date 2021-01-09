@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\EventListener;
+namespace FOS\UserBundle\EventListener;
 
 use InvalidArgumentException;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\Event;
@@ -26,8 +26,8 @@ final class FlashListener implements EventSubscriberInterface
      * @var string[]
      */
     private static $successMessages = [
-        NucleosUserEvents::CHANGE_PASSWORD_COMPLETED => 'change_password.flash.success',
-        NucleosUserEvents::RESETTING_RESET_COMPLETED => 'resetting.flash.success',
+        FOSUserEvents::CHANGE_PASSWORD_COMPLETED => 'change_password.flash.success',
+        FOSUserEvents::RESETTING_RESET_COMPLETED => 'resetting.flash.success',
     ];
 
     /**
@@ -49,8 +49,8 @@ final class FlashListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            NucleosUserEvents::CHANGE_PASSWORD_COMPLETED => 'addSuccessFlash',
-            NucleosUserEvents::RESETTING_RESET_COMPLETED => 'addSuccessFlash',
+            FOSUserEvents::CHANGE_PASSWORD_COMPLETED => 'addSuccessFlash',
+            FOSUserEvents::RESETTING_RESET_COMPLETED => 'addSuccessFlash',
         ];
     }
 
@@ -65,6 +65,6 @@ final class FlashListener implements EventSubscriberInterface
 
     private function trans(string $message, array $params = []): string
     {
-        return $this->translator->trans($message, $params, 'NucleosUserBundle');
+        return $this->translator->trans($message, $params, 'FOSUserBundle');
     }
 }

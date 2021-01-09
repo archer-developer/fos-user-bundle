@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,17 +11,17 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Action\CheckLoginAction;
-use Nucleos\UserBundle\Action\LoggedinAction;
-use Nucleos\UserBundle\Action\LoginAction;
-use Nucleos\UserBundle\Action\LogoutAction;
-use Nucleos\UserBundle\EventListener\LastLoginListener;
-use Nucleos\UserBundle\Form\Type\LoginFormType;
-use Nucleos\UserBundle\Security\EmailProvider;
-use Nucleos\UserBundle\Security\EmailUserProvider;
-use Nucleos\UserBundle\Security\LoginManager;
-use Nucleos\UserBundle\Security\LoginManagerInterface;
-use Nucleos\UserBundle\Security\UserProvider;
+use FOS\UserBundle\Action\CheckLoginAction;
+use FOS\UserBundle\Action\LoggedinAction;
+use FOS\UserBundle\Action\LoginAction;
+use FOS\UserBundle\Action\LogoutAction;
+use FOS\UserBundle\EventListener\LastLoginListener;
+use FOS\UserBundle\Form\Type\LoginFormType;
+use FOS\UserBundle\Security\EmailProvider;
+use FOS\UserBundle\Security\EmailUserProvider;
+use FOS\UserBundle\Security\LoginManager;
+use FOS\UserBundle\Security\LoginManagerInterface;
+use FOS\UserBundle\Security\UserProvider;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
@@ -30,10 +30,10 @@ return static function (ContainerConfigurator $container): void {
         ->set(LastLoginListener::class)
             ->tag('kernel.event_subscriber')
             ->args([
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
-        ->set('nucleos_user.security.login_manager', LoginManager::class)
+        ->set('FOS_user.security.login_manager', LoginManager::class)
             ->args([
                 new Reference('security.token_storage'),
                 new Reference('security.user_checker'),
@@ -42,21 +42,21 @@ return static function (ContainerConfigurator $container): void {
                 null,
             ])
 
-        ->alias(LoginManagerInterface::class, 'nucleos_user.security.login_manager')
+        ->alias(LoginManagerInterface::class, 'FOS_user.security.login_manager')
 
-        ->set('nucleos_user.user_provider.username', UserProvider::class)
+        ->set('FOS_user.user_provider.username', UserProvider::class)
             ->args([
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
-        ->set('nucleos_user.user_provider.username_email', EmailUserProvider::class)
+        ->set('FOS_user.user_provider.username_email', EmailUserProvider::class)
             ->args([
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
-        ->set('nucleos_user.user_provider.email', EmailProvider::class)
+        ->set('FOS_user.user_provider.email', EmailProvider::class)
             ->args([
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
         ->set(LoginFormType::class)

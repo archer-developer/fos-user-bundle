@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\DependencyInjection\Compiler;
+namespace FOS\UserBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,8 +21,8 @@ final class InjectUserCheckerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        $firewallName = $container->getParameter('nucleos_user.firewall_name');
-        $loginManager = $container->findDefinition('nucleos_user.security.login_manager');
+        $firewallName = $container->getParameter('FOS_user.firewall_name');
+        $loginManager = $container->findDefinition('FOS_user.security.login_manager');
 
         if ($container->has('security.user_checker.'.$firewallName)) {
             $loginManager->replaceArgument(1, new Reference('security.user_checker.'.$firewallName));

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Action\ChangePasswordAction;
-use Nucleos\UserBundle\Form\Model\ChangePassword;
-use Nucleos\UserBundle\Form\Type\ChangePasswordFormType;
+use FOS\UserBundle\Action\ChangePasswordAction;
+use FOS\UserBundle\Form\Model\ChangePassword;
+use FOS\UserBundle\Form\Type\ChangePasswordFormType;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
@@ -33,7 +33,7 @@ return static function (ContainerConfigurator $container): void {
                 new Reference('security.helper'),
                 new Reference('event_dispatcher'),
                 new Reference('form.factory'),
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
     ;

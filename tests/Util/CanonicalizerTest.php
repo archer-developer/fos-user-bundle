@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Util;
+namespace FOS\UserBundle\Tests\Util;
 
 use Generator;
-use Nucleos\UserBundle\Util\Canonicalizer;
+use FOS\UserBundle\Util\Canonicalizer;
 use PHPUnit\Framework\TestCase;
 
 final class CanonicalizerTest extends TestCase

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Noop\Exception;
+namespace FOS\UserBundle\Noop\Exception;
 
 use Exception;
 use RuntimeException;
@@ -19,7 +19,7 @@ final class NoDriverException extends RuntimeException
     public function __construct(?string $message = null, int $code = 0, Exception $previous = null)
     {
         parent::__construct(
-            null === $message ? 'The child node "db_driver" at path "nucleos_user" must be configured.' : $message,
+            null === $message ? 'The child node "db_driver" at path "FOS_user" must be configured.' : $message,
             $code,
             $previous
         );

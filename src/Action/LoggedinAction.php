@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
-use Nucleos\UserBundle\Event\GetResponseUserEvent;
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -54,13 +54,13 @@ final class LoggedinAction
         }
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::SECURITY_LOGIN_COMPLETED);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::SECURITY_LOGIN_COMPLETED);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
-        return new Response($this->twig->render('@NucleosUser/Security/loggedin.html.twig'));
+        return new Response($this->twig->render('@FOSUser/Security/loggedin.html.twig'));
     }
 
     private function getUser(): ?UserInterface

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,17 +11,17 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Doctrine\GroupManager;
+use FOS\UserBundle\Doctrine\GroupManager;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('nucleos_user.group_manager.default', GroupManager::class)
+        ->set('FOS_user.group_manager.default', GroupManager::class)
             ->args([
-                new Reference('nucleos_user.object_manager'),
-                new Parameter('nucleos_user.model.group.class'),
+                new Reference('FOS_user.object_manager'),
+                new Parameter('FOS_user.model.group.class'),
             ])
 
     ;

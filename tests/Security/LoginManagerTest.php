@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Security;
+namespace FOS\UserBundle\Tests\Security;
 
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Security\LoginManager;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Security\LoginManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

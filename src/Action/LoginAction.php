@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
-use Nucleos\UserBundle\Event\GetResponseLoginEvent;
-use Nucleos\UserBundle\Form\Type\LoginFormType;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\GetResponseLoginEvent;
+use FOS\UserBundle\Form\Type\LoginFormType;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,14 +71,14 @@ final class LoginAction
     public function __invoke(Request $request): Response
     {
         $event = new GetResponseLoginEvent($request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::SECURITY_LOGIN_INITIALIZE);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::SECURITY_LOGIN_INITIALIZE);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
         $form = $this->formFactory->create(LoginFormType::class, null, [
-            'action' => $this->router->generate('nucleos_user_security_check'),
+            'action' => $this->router->generate('FOS_user_security_check'),
             'method' => 'POST',
         ]);
 
@@ -87,7 +87,7 @@ final class LoginAction
             $error = $form->getErrors()->current()->getMessage();
         }
 
-        return new Response($this->twig->render('@NucleosUser/Security/login.html.twig', [
+        return new Response($this->twig->render('@FOSUser/Security/login.html.twig', [
             'form'          => $form->createView(),
             // TODO: Remove this fields with the next major release
             'last_username' => $form->getData()['_username'],

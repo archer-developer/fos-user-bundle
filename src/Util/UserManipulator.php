@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,13 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Util;
+namespace FOS\UserBundle\Util;
 
 use InvalidArgumentException;
-use Nucleos\UserBundle\Event\UserEvent;
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\UserEvent;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -57,7 +57,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_CREATED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_CREATED);
 
         return $user;
     }
@@ -69,7 +69,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_ACTIVATED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_ACTIVATED);
     }
 
     public function deactivate(string $username): void
@@ -79,7 +79,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_DEACTIVATED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_DEACTIVATED);
     }
 
     public function changePassword(string $username, string $password): void
@@ -89,7 +89,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_PASSWORD_CHANGED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_PASSWORD_CHANGED);
     }
 
     public function promote(string $username): void
@@ -99,7 +99,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_PROMOTED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_PROMOTED);
     }
 
     public function demote(string $username): void
@@ -109,7 +109,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch($event, NucleosUserEvents::USER_DEMOTED);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_DEMOTED);
     }
 
     /**

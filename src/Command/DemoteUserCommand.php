@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Command;
+namespace FOS\UserBundle\Command;
 
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class DemoteUserCommand extends RoleCommand
@@ -21,18 +21,18 @@ final class DemoteUserCommand extends RoleCommand
     /**
      * @var string
      */
-    protected static $defaultName = 'nucleos:user:demote';
+    protected static $defaultName = 'FOS:user:demote';
 
     protected function configure(): void
     {
         parent::configure();
 
         $this
-            ->setName('nucleos:user:demote')
+            ->setName('FOS:user:demote')
             ->setDescription('Demote a user by removing a role')
             ->setHelp(
                 <<<'EOT'
-The <info>nucleos:user:demote</info> command demotes a user by removing a role
+The <info>FOS:user:demote</info> command demotes a user by removing a role
 
   <info>php %command.full_name% matthieu ROLE_CUSTOM</info>
   <info>php %command.full_name% --super matthieu</info>

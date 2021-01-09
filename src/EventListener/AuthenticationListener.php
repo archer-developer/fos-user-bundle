@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\EventListener;
+namespace FOS\UserBundle\EventListener;
 
-use Nucleos\UserBundle\Event\FilterUserResponseEvent;
-use Nucleos\UserBundle\Event\UserEvent;
-use Nucleos\UserBundle\NucleosUserEvents;
-use Nucleos\UserBundle\Security\LoginManagerInterface;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\UserEvent;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Security\LoginManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -42,7 +42,7 @@ final class AuthenticationListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            NucleosUserEvents::RESETTING_RESET_COMPLETED => 'authenticate',
+            FOSUserEvents::RESETTING_RESET_COMPLETED => 'authenticate',
         ];
     }
 
@@ -51,7 +51,7 @@ final class AuthenticationListener implements EventSubscriberInterface
         try {
             $this->loginManager->logInUser($this->firewallName, $event->getUser(), $event->getResponse());
 
-            $eventDispatcher->dispatch(new UserEvent($event->getUser(), $event->getRequest()), NucleosUserEvents::SECURITY_IMPLICIT_LOGIN);
+            $eventDispatcher->dispatch(new UserEvent($event->getUser(), $event->getRequest()), FOSUserEvents::SECURITY_IMPLICIT_LOGIN);
         } catch (AccountStatusException $ex) {
             // We simply do not authenticate users which do not pass the user
             // checker (not enabled, expired, etc.).

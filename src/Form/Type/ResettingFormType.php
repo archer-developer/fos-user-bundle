@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Form\Type;
+namespace FOS\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -41,14 +41,14 @@ final class ResettingFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type'    => PasswordType::class,
                 'options' => [
-                    'translation_domain' => 'NucleosUserBundle',
+                    'translation_domain' => 'FOSUserBundle',
                     'attr'               => [
                         'autocomplete' => 'new-password',
                     ],
                 ],
                 'first_options'   => ['label' => 'form.new_password'],
                 'second_options'  => ['label' => 'form.new_password_confirmation'],
-                'invalid_message' => 'nucleos_user.password.mismatch',
+                'invalid_message' => 'FOS_user.password.mismatch',
             ])
             ->add('save', SubmitType::class, [
                 'label'  => 'resetting.reset.submit',

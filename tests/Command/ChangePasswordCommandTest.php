@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Command;
+namespace FOS\UserBundle\Tests\Command;
 
-use Nucleos\UserBundle\Command\ChangePasswordCommand;
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Command\ChangePasswordCommand;
+use FOS\UserBundle\Util\UserManipulator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -79,7 +79,7 @@ final class ChangePasswordCommandTest extends TestCase
 
         $application->add($command);
 
-        return new CommandTester($application->find('nucleos:user:change-password'));
+        return new CommandTester($application->find('FOS:user:change-password'));
     }
 
     /**

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\App\Entity;
+namespace FOS\UserBundle\Tests\App\Entity;
 
-use Nucleos\UserBundle\Model\User;
+use FOS\UserBundle\Model\User;
 
 /**
- * @phpstan-extends User<\Nucleos\UserBundle\Model\GroupInterface>
+ * @phpstan-extends User<\FOS\UserBundle\Model\GroupInterface>
  */
 class TestUser extends User
 {

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,13 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Util;
+namespace FOS\UserBundle\Tests\Util;
 
 use InvalidArgumentException;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
-use Nucleos\UserBundle\Tests\App\Entity\TestUser;
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Tests\App\Entity\TestUser;
+use FOS\UserBundle\Util\UserManipulator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -47,7 +47,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_CREATED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_CREATED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -81,7 +81,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_ACTIVATED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_ACTIVATED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -109,7 +109,7 @@ final class UserManipulatorTest extends TestCase
             ->method('updateUser')
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_ACTIVATED, false);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_ACTIVATED, false);
 
         $requestStackMock = $this->getRequestStackMock(false);
 
@@ -137,7 +137,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_DEACTIVATED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_DEACTIVATED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -165,7 +165,7 @@ final class UserManipulatorTest extends TestCase
             ->method('updateUser')
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_DEACTIVATED, false);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_DEACTIVATED, false);
 
         $requestStackMock = $this->getRequestStackMock(false);
 
@@ -193,7 +193,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_PROMOTED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_PROMOTED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -221,7 +221,7 @@ final class UserManipulatorTest extends TestCase
             ->method('updateUser')
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_PROMOTED, false);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_PROMOTED, false);
 
         $requestStackMock = $this->getRequestStackMock(false);
 
@@ -249,7 +249,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_DEMOTED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_DEMOTED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -277,7 +277,7 @@ final class UserManipulatorTest extends TestCase
             ->method('updateUser')
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_DEMOTED, false);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_DEMOTED, false);
 
         $requestStackMock = $this->getRequestStackMock(false);
 
@@ -308,7 +308,7 @@ final class UserManipulatorTest extends TestCase
             ->with(static::isInstanceOf(TestUser::class))
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_PASSWORD_CHANGED, true);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_PASSWORD_CHANGED, true);
 
         $requestStackMock = $this->getRequestStackMock(true);
 
@@ -338,7 +338,7 @@ final class UserManipulatorTest extends TestCase
             ->method('updateUser')
         ;
 
-        $eventDispatcherMock = $this->getEventDispatcherMock(NucleosUserEvents::USER_PASSWORD_CHANGED, false);
+        $eventDispatcherMock = $this->getEventDispatcherMock(FOSUserEvents::USER_PASSWORD_CHANGED, false);
 
         $requestStackMock = $this->getRequestStackMock(false);
 

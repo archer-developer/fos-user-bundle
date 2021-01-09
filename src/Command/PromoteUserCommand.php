@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Command;
+namespace FOS\UserBundle\Command;
 
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Util\UserManipulator;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class PromoteUserCommand extends RoleCommand
@@ -21,18 +21,18 @@ final class PromoteUserCommand extends RoleCommand
     /**
      * @var string
      */
-    protected static $defaultName = 'nucleos:user:promote';
+    protected static $defaultName = 'FOS:user:promote';
 
     protected function configure(): void
     {
         parent::configure();
 
         $this
-            ->setName('nucleos:user:promote')
+            ->setName('FOS:user:promote')
             ->setDescription('Promotes a user by adding a role')
             ->setHelp(
                 <<<'EOT'
-The <info>nucleos:user:promote</info> command promotes a user by adding a role
+The <info>FOS:user:promote</info> command promotes a user by adding a role
 
   <info>php %command.full_name% matthieu ROLE_CUSTOM</info>
   <info>php %command.full_name% --super matthieu</info>

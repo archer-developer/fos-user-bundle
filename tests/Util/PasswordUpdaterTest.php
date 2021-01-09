@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Tests\Util;
+namespace FOS\UserBundle\Tests\Util;
 
-use Nucleos\UserBundle\Tests\App\Entity\TestUser;
-use Nucleos\UserBundle\Tests\Fixtures\SelfSaltedEncoder;
-use Nucleos\UserBundle\Util\PasswordUpdater;
+use FOS\UserBundle\Tests\App\Entity\TestUser;
+use FOS\UserBundle\Tests\Fixtures\SelfSaltedEncoder;
+use FOS\UserBundle\Util\PasswordUpdater;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;

@@ -1,10 +1,10 @@
 security:
     encoders:
-        Nucleos\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface: sha512
 
     providers:
-        nucleos_userbundle:
-            id: nucleos_user.user_provider.username
+        FOS_userbundle:
+            id: FOS_user.user_provider.username
 
     firewalls:
         main:
@@ -12,7 +12,7 @@ security:
             pattern:      .*
             context:      user
             form_login:
-                provider:       nucleos_userbundle
+                provider:       FOS_userbundle
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check

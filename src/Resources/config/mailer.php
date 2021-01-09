@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,23 +11,23 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Mailer\Mailer;
-use Nucleos\UserBundle\Mailer\NoopMailer;
+use FOS\UserBundle\Mailer\Mailer;
+use FOS\UserBundle\Mailer\NoopMailer;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
 
-        ->set('nucleos_user.mailer.default', Mailer::class)
+        ->set('FOS_user.mailer.default', Mailer::class)
             ->args([
                 new Reference('mailer.mailer'),
                 new Reference('translator'),
                 new Reference('router'),
-                new Parameter('nucleos_user.resetting.from_email'),
+                new Parameter('FOS_user.resetting.from_email'),
             ])
 
-        ->set('nucleos_user.mailer.noop', NoopMailer::class)
+        ->set('FOS_user.mailer.noop', NoopMailer::class)
 
     ;
 };

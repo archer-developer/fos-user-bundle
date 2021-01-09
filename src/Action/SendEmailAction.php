@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Action;
+namespace FOS\UserBundle\Action;
 
 use DateTime;
-use Nucleos\UserBundle\Event\GetResponseNullableUserEvent;
-use Nucleos\UserBundle\Event\GetResponseUserEvent;
-use Nucleos\UserBundle\Mailer\MailerInterface;
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
-use Nucleos\UserBundle\Util\TokenGeneratorInterface;
+use FOS\UserBundle\Event\GetResponseNullableUserEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Mailer\MailerInterface;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,7 +90,7 @@ final class SendEmailAction
             }
         }
 
-        return new RedirectResponse($this->router->generate('nucleos_user_resetting_check_email', [
+        return new RedirectResponse($this->router->generate('FOS_user_resetting_check_email', [
             'username' => $username,
         ]));
     }
@@ -101,7 +101,7 @@ final class SendEmailAction
     private function process(Request $request, UserInterface $user): ?Response
     {
         $event = new GetResponseNullableUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_SEND_EMAIL_INITIALIZE);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_SEND_EMAIL_INITIALIZE);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -112,7 +112,7 @@ final class SendEmailAction
         }
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_RESET_REQUEST);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_RESET_REQUEST);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -123,7 +123,7 @@ final class SendEmailAction
         }
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_SEND_EMAIL_CONFIRM);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_SEND_EMAIL_CONFIRM);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -134,7 +134,7 @@ final class SendEmailAction
         $this->userManager->updateUser($user);
 
         $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch($event, NucleosUserEvents::RESETTING_SEND_EMAIL_COMPLETED);
+        $this->eventDispatcher->dispatch($event, FOSUserEvents::RESETTING_SEND_EMAIL_COMPLETED);
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();

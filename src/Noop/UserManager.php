@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Noop;
+namespace FOS\UserBundle\Noop;
 
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManager as BaseUserManager;
-use Nucleos\UserBundle\Noop\Exception\NoDriverException;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManager as BaseUserManager;
+use FOS\UserBundle\Noop\Exception\NoDriverException;
 
 final class UserManager extends BaseUserManager
 {

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\DependencyInjection;
+namespace FOS\UserBundle\DependencyInjection;
 
-use Nucleos\UserBundle\Mailer\MailerInterface;
-use Nucleos\UserBundle\Model\GroupManagerInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\Util\TokenGeneratorInterface;
+use FOS\UserBundle\Mailer\MailerInterface;
+use FOS\UserBundle\Model\GroupManagerInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\FileLoader;
@@ -27,7 +27,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-final class NucleosUserExtension extends Extension implements PrependExtensionInterface
+final class FOSUserExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * @var array<string, array<string, string>>
@@ -70,7 +70,7 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
         if ('custom' !== $config['db_driver']) {
             if (isset(self::$doctrineDrivers[$config['db_driver']])) {
                 $loader->load('doctrine.php');
-                $container->setAlias('nucleos_user.doctrine_registry', new Alias(self::$doctrineDrivers[$config['db_driver']]['registry'], false));
+                $container->setAlias('FOS_user.doctrine_registry', new Alias(self::$doctrineDrivers[$config['db_driver']]['registry'], false));
             } else {
                 $loader->load(sprintf('%s.php', $config['db_driver']));
             }
@@ -78,8 +78,8 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
         }
 
         if (isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $definition = $container->getDefinition('nucleos_user.object_manager');
-            $definition->setFactory([new Reference('nucleos_user.doctrine_registry'), 'getManager']);
+            $definition = $container->getDefinition('FOS_user.object_manager');
+            $definition->setFactory([new Reference('FOS_user.doctrine_registry'), 'getManager']);
         }
 
         foreach (['validator', 'security', 'util', 'mailer', 'listeners', 'commands'] as $basename) {
@@ -87,7 +87,7 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
         }
 
         if (!$config['use_authentication_listener']) {
-            $container->removeDefinition('nucleos_user.listener.authentication');
+            $container->removeDefinition('FOS_user.listener.authentication');
         }
 
         if ($config['use_flash_notifications']) {
@@ -95,17 +95,17 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
             $loader->load('flash_notifications.php');
         }
 
-        $container->setAlias('nucleos_user.util.email_canonicalizer', new Alias($config['service']['email_canonicalizer'], true));
-        $container->setAlias('nucleos_user.util.username_canonicalizer', new Alias($config['service']['username_canonicalizer'], true));
+        $container->setAlias('FOS_user.util.email_canonicalizer', new Alias($config['service']['email_canonicalizer'], true));
+        $container->setAlias('FOS_user.util.username_canonicalizer', new Alias($config['service']['username_canonicalizer'], true));
 
-        $container->setAlias('nucleos_user.util.token_generator', new Alias($config['service']['token_generator'], true));
+        $container->setAlias('FOS_user.util.token_generator', new Alias($config['service']['token_generator'], true));
         $container->setAlias(TokenGeneratorInterface::class, new Alias($config['service']['token_generator'], true));
 
-        $container->setAlias('nucleos_user.user_manager', new Alias($config['service']['user_manager'], true));
+        $container->setAlias('FOS_user.user_manager', new Alias($config['service']['user_manager'], true));
         $container->setAlias(UserManagerInterface::class, new Alias($config['service']['user_manager'], true));
 
         if ($config['use_listener'] && isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $listenerDefinition = $container->getDefinition('nucleos_user.user_listener');
+            $listenerDefinition = $container->getDefinition('FOS_user.user_listener');
             $listenerDefinition->addTag(self::$doctrineDrivers[$config['db_driver']]['tag']);
             if (isset(self::$doctrineDrivers[$config['db_driver']]['listener_class'])) {
                 $listenerDefinition->setClass(self::$doctrineDrivers[$config['db_driver']]['listener_class']);
@@ -114,10 +114,10 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'db_driver'          => 'nucleos_user.storage',
-                'firewall_name'      => 'nucleos_user.firewall_name',
-                'model_manager_name' => 'nucleos_user.model_manager_name',
-                'user_class'         => 'nucleos_user.model.user.class',
+                'db_driver'          => 'FOS_user.storage',
+                'firewall_name'      => 'FOS_user.firewall_name',
+                'model_manager_name' => 'FOS_user.model_manager_name',
+                'user_class'         => 'FOS_user.model.user.class',
             ],
         ]);
 
@@ -129,19 +129,19 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
         }
 
         if ($this->mailerNeeded) {
-            $container->setAlias('nucleos_user.mailer', new Alias($config['service']['mailer'], true));
+            $container->setAlias('FOS_user.mailer', new Alias($config['service']['mailer'], true));
             $container->setAlias(MailerInterface::class, new Alias($config['service']['mailer'], true));
         }
 
         if ($this->sessionNeeded) {
             // Use a private alias rather than a parameter, to avoid leaking it at runtime (the private alias will be removed)
-            $container->setAlias('nucleos_user.session', new Alias('session', false));
+            $container->setAlias('FOS_user.session', new Alias('session', false));
         }
     }
 
     public function prepend(ContainerBuilder $container): void
     {
-        $configs = $container->getExtensionConfig('nucleos_user');
+        $configs = $container->getExtensionConfig('FOS_user');
 
         $storage = null;
         foreach ($configs as $config) {
@@ -215,14 +215,14 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
             unset($config['from_email']);
         }
 
-        $container->setParameter('nucleos_user.resetting.from_email', $fromEmail);
+        $container->setParameter('FOS_user.resetting.from_email', $fromEmail);
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'retry_ttl' => 'nucleos_user.resetting.retry_ttl',
-                'token_ttl' => 'nucleos_user.resetting.token_ttl',
+                'retry_ttl' => 'FOS_user.resetting.retry_ttl',
+                'token_ttl' => 'FOS_user.resetting.token_ttl',
             ],
-            'email' => 'nucleos_user.resetting.email.%s',
+            'email' => 'FOS_user.resetting.email.%s',
         ]);
     }
 
@@ -236,12 +236,12 @@ final class NucleosUserExtension extends Extension implements PrependExtensionIn
             }
         }
 
-        $container->setAlias('nucleos_user.group_manager', new Alias($config['group_manager'], true));
-        $container->setAlias(GroupManagerInterface::class, new Alias('nucleos_user.group_manager', true));
+        $container->setAlias('FOS_user.group_manager', new Alias($config['group_manager'], true));
+        $container->setAlias(GroupManagerInterface::class, new Alias('FOS_user.group_manager', true));
 
         $this->remapParametersNamespaces($config, $container, [
             '' => [
-                'group_class' => 'nucleos_user.model.group.class',
+                'group_class' => 'FOS_user.model.group.class',
             ],
         ]);
     }

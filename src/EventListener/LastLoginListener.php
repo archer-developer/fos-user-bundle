@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,13 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\EventListener;
+namespace FOS\UserBundle\EventListener;
 
 use DateTime;
-use Nucleos\UserBundle\Event\UserEvent;
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Model\UserManagerInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\UserEvent;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
@@ -37,7 +37,7 @@ final class LastLoginListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            NucleosUserEvents::SECURITY_IMPLICIT_LOGIN => 'onImplicitLogin',
+            FOSUserEvents::SECURITY_IMPLICIT_LOGIN => 'onImplicitLogin',
             SecurityEvents::INTERACTIVE_LOGIN          => 'onSecurityInteractiveLogin',
         ];
     }

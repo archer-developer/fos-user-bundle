@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Form\Model;
+namespace FOS\UserBundle\Form\Model;
 
-use Nucleos\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserInterface;
 
 final class Resetting
 {

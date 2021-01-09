@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Validator;
+namespace FOS\UserBundle\Validator;
 
-use Nucleos\UserBundle\Model\UserInterface;
-use Nucleos\UserBundle\Util\CanonicalFieldsUpdater;
+use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Util\CanonicalFieldsUpdater;
 use Symfony\Component\Validator\ObjectInitializerInterface;
 
 final class Initializer implements ObjectInitializerInterface

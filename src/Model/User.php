@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Model;
+namespace FOS\UserBundle\Model;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,8 +20,8 @@ use DomainException;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
 /**
- * @phpstan-template GroupTemplate of \Nucleos\UserBundle\Model\GroupInterface
- * @phpstan-implements \Nucleos\UserBundle\Model\GroupableInterface<GroupTemplate>
+ * @phpstan-template GroupTemplate of \FOS\UserBundle\Model\GroupInterface
+ * @phpstan-implements \FOS\UserBundle\Model\GroupableInterface<GroupTemplate>
  */
 abstract class User implements UserInterface, GroupableInterface, LocaleAwareInterface
 {

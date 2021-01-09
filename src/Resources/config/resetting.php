@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,14 +11,14 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\UserBundle\Action\CheckEmailAction;
-use Nucleos\UserBundle\Action\RequestResetAction;
-use Nucleos\UserBundle\Action\ResetAction;
-use Nucleos\UserBundle\Action\SendEmailAction;
-use Nucleos\UserBundle\EventListener\ResettingListener;
-use Nucleos\UserBundle\Form\Model\Resetting;
-use Nucleos\UserBundle\Form\Type\RequestPasswordFormType;
-use Nucleos\UserBundle\Form\Type\ResettingFormType;
+use FOS\UserBundle\Action\CheckEmailAction;
+use FOS\UserBundle\Action\RequestResetAction;
+use FOS\UserBundle\Action\ResetAction;
+use FOS\UserBundle\Action\SendEmailAction;
+use FOS\UserBundle\EventListener\ResettingListener;
+use FOS\UserBundle\Form\Model\Resetting;
+use FOS\UserBundle\Form\Type\RequestPasswordFormType;
+use FOS\UserBundle\Form\Type\ResettingFormType;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -38,7 +38,7 @@ return static function (ContainerConfigurator $container): void {
             ->tag('kernel.event_subscriber')
             ->args([
                 new Reference('router'),
-                new Parameter('nucleos_user.resetting.token_ttl'),
+                new Parameter('FOS_user.resetting.token_ttl'),
             ])
 
         ->set(RequestResetAction::class)
@@ -56,7 +56,7 @@ return static function (ContainerConfigurator $container): void {
                 new Reference('router'),
                 new Reference('event_dispatcher'),
                 new Reference('form.factory'),
-                new Reference('nucleos_user.user_manager'),
+                new Reference('FOS_user.user_manager'),
             ])
 
         ->set(SendEmailAction::class)
@@ -64,10 +64,10 @@ return static function (ContainerConfigurator $container): void {
             ->args([
                 new Reference('router'),
                 new Reference('event_dispatcher'),
-                new Reference('nucleos_user.user_manager'),
-                new Reference('nucleos_user.util.token_generator'),
-                new Reference('nucleos_user.mailer'),
-                new Parameter('nucleos_user.resetting.retry_ttl'),
+                new Reference('FOS_user.user_manager'),
+                new Reference('FOS_user.util.token_generator'),
+                new Reference('FOS_user.mailer'),
+                new Parameter('FOS_user.resetting.retry_ttl'),
             ])
 
         ->set(CheckEmailAction::class)
@@ -75,7 +75,7 @@ return static function (ContainerConfigurator $container): void {
             ->args([
                 new Reference('twig'),
                 new Reference('router'),
-                new Parameter('nucleos_user.resetting.retry_ttl'),
+                new Parameter('FOS_user.resetting.retry_ttl'),
             ])
 
     ;

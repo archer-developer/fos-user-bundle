@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Command;
+namespace FOS\UserBundle\Command;
 
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Util\UserManipulator;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,7 +26,7 @@ final class ChangePasswordCommand extends Command
     /**
      * @var string
      */
-    protected static $defaultName = 'nucleos:user:change-password';
+    protected static $defaultName = 'FOS:user:change-password';
 
     /**
      * @var UserManipulator
@@ -43,7 +43,7 @@ final class ChangePasswordCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('nucleos:user:change-password')
+            ->setName('FOS:user:change-password')
             ->setDescription('Change the password of a user.')
             ->setDefinition([
                 new InputArgument('username', InputArgument::REQUIRED, 'The username'),
@@ -51,7 +51,7 @@ final class ChangePasswordCommand extends Command
             ])
             ->setHelp(
                 <<<'EOT'
-The <info>nucleos:user:change-password</info> command changes the password of a user:
+The <info>FOS:user:change-password</info> command changes the password of a user:
 
   <info>php %command.full_name% matthieu</info>
 

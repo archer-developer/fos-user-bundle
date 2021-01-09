@@ -1,7 +1,7 @@
 Command line tools
 ==================
 
-The NucleosUserBundle provides a number of command line utilities to help manage your
+The FOSUserBundle provides a number of command line utilities to help manage your
 application's users. Commands are available for the following tasks:
 
 1. Create a User
@@ -13,13 +13,13 @@ application's users. Commands are available for the following tasks:
 
 .. note::
 
-    You must have correctly installed and configured the NucleosUserBundle before
+    You must have correctly installed and configured the FOSUserBundle before
     using these commands.
 
 Create a User
 -------------
 
-You can use the ``nucleos:user:create`` command to create a new user for your application.
+You can use the ``FOS:user:create`` command to create a new user for your application.
 The command takes three arguments, the ``username``, ``email``, and ``password`` for
 the user you are creating.
 
@@ -28,7 +28,7 @@ For example if you wanted to create a user with username ``testuser``, with emai
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:create testuser test@example.com p@ssword
+    $ php bin/console FOS:user:create testuser test@example.com p@ssword
 
 If any of the required arguments are not passed to the command, an interactive prompt
 will ask you to enter them. For example, if you ran the command as follows, then
@@ -37,7 +37,7 @@ you want to create.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:create testuser
+    $ php bin/console FOS:user:create testuser
 
 There are two options that you can pass to the command as well. They are
 ``--super-admin`` and ``--inactive``.
@@ -48,43 +48,43 @@ An example is provided below:
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:create adminuser --super-admin
+    $ php bin/console FOS:user:create adminuser --super-admin
 
 If you specify the ``--inactive`` option, then the user that you create will no be
 able to log in until he is activated.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:create testuser --inactive
+    $ php bin/console FOS:user:create testuser --inactive
 
 Activate a User
 ---------------
 
-The ``nucleos:user:activate`` command activates an inactive user. The only argument
+The ``FOS:user:activate`` command activates an inactive user. The only argument
 that the command requires is the ``username`` of the user who should be activated.
 If no ``username`` is specified then an interactive prompt will ask you
 to enter one. An example of using this command is listed below.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:activate testuser
+    $ php bin/console FOS:user:activate testuser
 
 Deactivate a User
 -----------------
 
-The ``nucleos:user:deactivate`` command deactivates a user. Like the activate
+The ``FOS:user:deactivate`` command deactivates a user. Like the activate
 command, the only required argument is the ``username`` of the user who should be
 activated. If no ``username`` is specified then an interactive prompt will ask you
 to enter one. Below is an example of using this command.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:deactivate testuser
+    $ php bin/console FOS:user:deactivate testuser
 
 Promote a User
 --------------
 
-The ``nucleos:user:promote`` command enables you to add a role to a user or make the
+The ``FOS:user:promote`` command enables you to add a role to a user or make the
 user a super administrator.
 
 If you would like to add a role to a user you pass the ``username`` of the
@@ -93,14 +93,14 @@ the second.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:promote testuser ROLE_ADMIN
+    $ php bin/console FOS:user:promote testuser ROLE_ADMIN
 
 You can promote a user to a super administrator by passing the ``--super`` option
 after specifying the ``username``.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:promote testuser --super
+    $ php bin/console FOS:user:promote testuser --super
 
 If any of the arguments to the command are not specified then an interactive
 prompt will ask you to enter them.
@@ -116,7 +116,7 @@ prompt will ask you to enter them.
 Demote a User
 -------------
 
-The ``nucleos:user:demote`` command is similar to the promote command except that
+The ``FOS:user:demote`` command is similar to the promote command except that
 instead of adding a role to the user it removes it. You can also revoke a user's
 super administrator status with this command.
 
@@ -126,14 +126,14 @@ second.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:demote testuser ROLE_ADMIN
+    $ php bin/console FOS:user:demote testuser ROLE_ADMIN
 
 To revoke the super administrator status of a user, pass the ``username`` as
 an argument to the command as well as the ``--super`` option.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:demote testuser --super
+    $ php bin/console FOS:user:demote testuser --super
 
 If any of the arguments to the command are not specified then an interactive
 prompt will ask you to enter them.
@@ -151,13 +151,13 @@ prompt will ask you to enter them.
 Change a User's Password
 ------------------------
 
-The ``nucleos:user:change-password`` command provides an easy way to change a user's
+The ``FOS:user:change-password`` command provides an easy way to change a user's
 password. The command takes two arguments, the ``username`` of the user whose
 password you would like to change and the new ``password``.
 
 .. code-block:: bash
 
-    $ php bin/console nucleos:user:change-password testuser newp@ssword
+    $ php bin/console FOS:user:change-password testuser newp@ssword
 
 If you do not specify the ``password`` argument then an interactive prompt will
 ask you to enter one.

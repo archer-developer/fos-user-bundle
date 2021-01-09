@@ -1,7 +1,7 @@
 Using groups
 ============
 
-NucleosUserBundle allows you to associate groups to your users. Groups are a
+FOSUserBundle allows you to associate groups to your users. Groups are a
 way to group a collection of roles. The roles of a group will be granted
 to all users belonging to it.
 
@@ -13,14 +13,14 @@ to all users belonging to it.
     the groups triggers the database).
 
 The only mandatory configuration is the fully qualified class
-name (FQCN) of your ``Group`` class which must implement ``Nucleos\UserBundle\Model\GroupInterface``.
+name (FQCN) of your ``Group`` class which must implement ``FOS\UserBundle\Model\GroupInterface``.
 
 Below is an example configuration for enabling groups support.
 
 .. code-block:: yaml
 
-    # config/packages/nucleos_user.yaml
-    nucleos_user:
+    # config/packages/FOS_user.yaml
+    FOS_user:
         db_driver: orm
         firewall_name: main
         user_class: App\Entity\User
@@ -42,11 +42,11 @@ a) ORM Group class implementation
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Nucleos\UserBundle\Model\Group as BaseGroup;
+    use FOS\UserBundle\Model\Group as BaseGroup;
 
     /**
      * @ORM\Entity
-     * @ORM\Table(name="nucleos_user__group")
+     * @ORM\Table(name="FOS_user__group")
      */
     class Group extends BaseGroup
     {
@@ -71,7 +71,7 @@ b) MongoDB Group class implementation
     namespace App\Document;
 
     use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-    use Nucleos\UserBundle\Model\Group as BaseGroup;
+    use FOS\UserBundle\Model\Group as BaseGroup;
 
     /**
      * @MongoDB\Document
@@ -98,11 +98,11 @@ a) ORM User-Group mapping
     // src/Entity/User.php
     namespace App\Entity;
 
-    use Nucleos\UserBundle\Model\User as BaseUser;
+    use FOS\UserBundle\Model\User as BaseUser;
 
     /**
      * @ORM\Entity
-     * @ORM\Table(name="nucleos_user__user")
+     * @ORM\Table(name="FOS_user__user")
      */
     class User extends BaseUser
     {
@@ -115,7 +115,7 @@ a) ORM User-Group mapping
 
         /**
          * @ORM\ManyToMany(targetEntity="App\Entity\Group")
-         * @ORM\JoinTable(name="nucleos_user_user_group",
+         * @ORM\JoinTable(name="FOS_user_user_group",
          *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
          *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
          * )
@@ -132,7 +132,7 @@ b) MongoDB User-Group mapping
     namespace App\Document;
 
     use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-    use Nucleos\UserBundle\Model\User as BaseUser;
+    use FOS\UserBundle\Model\User as BaseUser;
 
     /**
      * @MongoDB\Document

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\EventListener;
+namespace FOS\UserBundle\EventListener;
 
-use Nucleos\UserBundle\Event\UserEvent;
-use Nucleos\UserBundle\Model\LocaleAwareInterface;
-use Nucleos\UserBundle\NucleosUserEvents;
+use FOS\UserBundle\Event\UserEvent;
+use FOS\UserBundle\Model\LocaleAwareInterface;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -47,11 +47,11 @@ final class LocaleEventListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            NucleosUserEvents::SECURITY_IMPLICIT_LOGIN => 'onImplicitLogin',
+            FOSUserEvents::SECURITY_IMPLICIT_LOGIN => 'onImplicitLogin',
             SecurityEvents::INTERACTIVE_LOGIN          => 'onSecurityInteractiveLogin',
             KernelEvents::REQUEST                      => [['onKernelRequest', 20]],
-            NucleosUserEvents::USER_LOCALE_CHANGED     => 'onLocaleChanged',
-            NucleosUserEvents::USER_TIMEZONE_CHANGED   => 'onTimezoneChanged',
+            FOSUserEvents::USER_LOCALE_CHANGED     => 'onLocaleChanged',
+            FOSUserEvents::USER_TIMEZONE_CHANGED   => 'onTimezoneChanged',
         ];
     }
 

@@ -5,7 +5,7 @@ All available configuration options are listed below with their default values.
 
 .. code-block:: yaml
 
-    nucleos_user:
+    FOS_user:
         db_driver:              ~ # Required
         firewall_name:          ~ # Required
         user_class:             ~ # Required
@@ -19,11 +19,11 @@ All available configuration options are listed below with their default values.
             token_ttl: 86400
             from_email: # Use this node only if you don't want the global email address for the resetting email
         service:
-            mailer:                 nucleos_user.mailer.default
-            email_canonicalizer:    nucleos_user.util.canonicalizer.default
-            username_canonicalizer: nucleos_user.util.canonicalizer.default
-            token_generator:        nucleos_user.util.token_generator.default
-            user_manager:           nucleos_user.user_manager.default
+            mailer:                 FOS_user.mailer.default
+            email_canonicalizer:    FOS_user.util.canonicalizer.default
+            username_canonicalizer: FOS_user.util.canonicalizer.default
+            token_generator:        FOS_user.util.token_generator.default
+            user_manager:           FOS_user.user_manager.default
         group:
             group_class:    ~ # Required when using groups
-            group_manager:  nucleos_user.group_manager.default
+            group_manager:  FOS_user.group_manager.default

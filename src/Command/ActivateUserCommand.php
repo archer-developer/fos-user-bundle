@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the NucleosUserBundle package.
+ * This file is part of the FOSUserBundle package.
  *
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Nucleos\UserBundle\Command;
+namespace FOS\UserBundle\Command;
 
-use Nucleos\UserBundle\Util\UserManipulator;
+use FOS\UserBundle\Util\UserManipulator;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,7 +26,7 @@ final class ActivateUserCommand extends Command
     /**
      * @var string
      */
-    protected static $defaultName = 'nucleos:user:activate';
+    protected static $defaultName = 'FOS:user:activate';
 
     /**
      * @var UserManipulator
@@ -43,14 +43,14 @@ final class ActivateUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('nucleos:user:activate')
+            ->setName('FOS:user:activate')
             ->setDescription('Activate a user')
             ->setDefinition([
                 new InputArgument('username', InputArgument::REQUIRED, 'The username'),
             ])
             ->setHelp(
                 <<<'EOT'
-The <info>nucleos:user:activate</info> command activates a user (so they will be able to log in):
+The <info>FOS:user:activate</info> command activates a user (so they will be able to log in):
 
   <info>php %command.full_name% matthieu</info>
 EOT

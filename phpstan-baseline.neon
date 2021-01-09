@@ -6,7 +6,7 @@ parameters:
 			path: src/Action/LoginAction.php
 
 		-
-			message: "#^Parameter \\#1 \\$username of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:activate\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$username of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:activate\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/ActivateUserCommand.php
 
@@ -21,12 +21,12 @@ parameters:
 			path: src/Command/ActivateUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$username of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:changePassword\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$username of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:changePassword\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/ChangePasswordCommand.php
 
 		-
-			message: "#^Parameter \\#2 \\$password of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:changePassword\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#2 \\$password of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:changePassword\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/ChangePasswordCommand.php
 
@@ -46,22 +46,22 @@ parameters:
 			path: src/Command/CreateUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$username of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$username of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/CreateUserCommand.php
 
 		-
-			message: "#^Parameter \\#2 \\$password of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#2 \\$password of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/CreateUserCommand.php
 
 		-
-			message: "#^Parameter \\#3 \\$email of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#3 \\$email of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/CreateUserCommand.php
 
 		-
-			message: "#^Parameter \\#5 \\$superadmin of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects bool, array\\<string\\>\\|bool\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#5 \\$superadmin of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:create\\(\\) expects bool, array\\<string\\>\\|bool\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/CreateUserCommand.php
 
@@ -76,7 +76,7 @@ parameters:
 			path: src/Command/CreateUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$username of method Nucleos\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:deactivate\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$username of method FOS\\\\UserBundle\\\\Util\\\\UserManipulator\\:\\:deactivate\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/DeactivateUserCommand.php
 
@@ -91,12 +91,12 @@ parameters:
 			path: src/Command/DeactivateUserCommand.php
 
 		-
-			message: "#^Parameter \\#3 \\$username of method Nucleos\\\\UserBundle\\\\Command\\\\RoleCommand\\:\\:executeRoleCommand\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#3 \\$username of method FOS\\\\UserBundle\\\\Command\\\\RoleCommand\\:\\:executeRoleCommand\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/RoleCommand.php
 
 		-
-			message: "#^Parameter \\#5 \\$role of method Nucleos\\\\UserBundle\\\\Command\\\\RoleCommand\\:\\:executeRoleCommand\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#5 \\$role of method FOS\\\\UserBundle\\\\Command\\\\RoleCommand\\:\\:executeRoleCommand\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Command/RoleCommand.php
 
@@ -116,57 +116,57 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:remapParameters\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:remapParameters\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:remapParameters\\(\\) has parameter \\$map with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:remapParameters\\(\\) has parameter \\$map with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:remapParametersNamespaces\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:remapParametersNamespaces\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:remapParametersNamespaces\\(\\) has parameter \\$namespaces with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:remapParametersNamespaces\\(\\) has parameter \\$namespaces with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:loadResetting\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:loadResetting\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\DependencyInjection\\\\NucleosUserExtension\\:\\:loadGroups\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\DependencyInjection\\\\FOSUserExtension\\:\\:loadGroups\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/DependencyInjection/NucleosUserExtension.php
+			path: src/DependencyInjection/FOSUserExtension.php
 
 		-
-			message: "#^Property Nucleos\\\\UserBundle\\\\Doctrine\\\\GroupManager\\<GroupTemplate of Nucleos\\\\UserBundle\\\\Model\\\\GroupInterface\\>\\:\\:\\$class \\(class\\-string\\<GroupTemplate of Nucleos\\\\UserBundle\\\\Model\\\\GroupInterface\\>\\) does not accept string\\.$#"
-			count: 1
-			path: src/Doctrine/GroupManager.php
-
-		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Doctrine\\\\GroupManager\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Property FOS\\\\UserBundle\\\\Doctrine\\\\GroupManager\\<GroupTemplate of FOS\\\\UserBundle\\\\Model\\\\GroupInterface\\>\\:\\:\\$class \\(class\\-string\\<GroupTemplate of FOS\\\\UserBundle\\\\Model\\\\GroupInterface\\>\\) does not accept string\\.$#"
 			count: 1
 			path: src/Doctrine/GroupManager.php
 
 		-
-			message: "#^Property Nucleos\\\\UserBundle\\\\Doctrine\\\\UserManager\\:\\:\\$class \\(class\\-string\\<Nucleos\\\\UserBundle\\\\Model\\\\UserInterface\\>\\) does not accept string\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Doctrine\\\\GroupManager\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Doctrine/GroupManager.php
+
+		-
+			message: "#^Property FOS\\\\UserBundle\\\\Doctrine\\\\UserManager\\:\\:\\$class \\(class\\-string\\<FOS\\\\UserBundle\\\\Model\\\\UserInterface\\>\\) does not accept string\\.$#"
 			count: 1
 			path: src/Doctrine/UserManager.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Doctrine\\\\UserManager\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Doctrine\\\\UserManager\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Doctrine/UserManager.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\EventListener\\\\FlashListener\\:\\:trans\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\EventListener\\\\FlashListener\\:\\:trans\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/EventListener/FlashListener.php
 
@@ -176,37 +176,37 @@ parameters:
 			path: src/EventListener/LocaleEventListener.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Model\\\\GroupManagerInterface\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Model\\\\GroupManagerInterface\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/GroupManagerInterface.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Model\\\\UserManagerInterface\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Model\\\\UserManagerInterface\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/UserManagerInterface.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Noop\\\\GroupManager\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Noop\\\\GroupManager\\:\\:findGroupBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Noop/GroupManager.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Noop\\\\UserManager\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Noop\\\\UserManager\\:\\:findUserBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Noop/UserManager.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Tests\\\\DependencyInjection\\\\NucleosUserExtensionTest\\:\\:getEmptyConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Tests\\\\DependencyInjection\\\\FOSUserExtensionTest\\:\\:getEmptyConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/DependencyInjection/NucleosUserExtensionTest.php
+			path: tests/DependencyInjection/FOSUserExtensionTest.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Tests\\\\DependencyInjection\\\\NucleosUserExtensionTest\\:\\:getFullConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Tests\\\\DependencyInjection\\\\FOSUserExtensionTest\\:\\:getFullConfig\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: tests/DependencyInjection/NucleosUserExtensionTest.php
+			path: tests/DependencyInjection/FOSUserExtensionTest.php
 
 		-
-			message: "#^Method Nucleos\\\\UserBundle\\\\Tests\\\\Model\\\\UserManagerTest\\:\\:getUserManager\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FOS\\\\UserBundle\\\\Tests\\\\Model\\\\UserManagerTest\\:\\:getUserManager\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/Model/UserManagerTest.php
 
