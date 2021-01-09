@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the FOSUserBundle package.
  *
- * (c) Christian Gripp <mail@core23.de>
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,30 +11,59 @@ declare(strict_types=1);
 
 namespace FOS\UserBundle\Model;
 
+/**
+ * @author Johannes M. Schmitt <schmittjoh@gmail.com>
+ * @author Christophe Coevoet <stof@notk.org>
+ */
 interface GroupInterface
 {
-    public function addRole(string $role): void;
+    /**
+     * @param string $role
+     *
+     * @return static
+     */
+    public function addRole($role);
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId();
 
-    public function getName(): string;
-
-    public function hasRole(string $role): bool;
+    /**
+     * @return string
+     */
+    public function getName();
 
     /**
-     * @return string[]
+     * @param string $role
+     *
+     * @return bool
      */
-    public function getRoles(): array;
-
-    public function removeRole(string $role): void;
-
-    public function setName(string $name): void;
+    public function hasRole($role);
 
     /**
-     * @param string[] $roles
+     * @return array
      */
-    public function setRoles(array $roles): void;
+    public function getRoles();
+
+    /**
+     * @param string $role
+     *
+     * @return static
+     */
+    public function removeRole($role);
+
+    /**
+     * @param string $name
+     *
+     * @return static
+     */
+    public function setName($name);
+
+    /**
+     * @param array $roles
+     *
+     * @return static
+     */
+    public function setRoles(array $roles);
 }

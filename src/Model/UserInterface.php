@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the FOSUserBundle package.
  *
- * (c) Christian Gripp <mail@core23.de>
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,16 +11,17 @@ declare(strict_types=1);
 
 namespace FOS\UserBundle\Model;
 
-use DateTime;
-use Serializable;
-use Symfony\Component\Security\Core\User\EquatableInterface;
-use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
-interface UserInterface extends BaseUserInterface, EquatableInterface, Serializable
+/**
+ * @author Thibault Duplessis <thibault.duplessis@gmail.com>
+ * @author Johannes M. Schmitt <schmittjoh@gmail.com>
+ */
+interface UserInterface extends AdvancedUserInterface, \Serializable
 {
-    public const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_DEFAULT = 'ROLE_USER';
 
-    public const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
     /**
      * Returns the user unique id.
@@ -33,91 +32,158 @@ interface UserInterface extends BaseUserInterface, EquatableInterface, Serializa
 
     /**
      * Sets the username.
+     *
+     * @param string $username
+     *
+     * @return static
      */
-    public function setUsername(string $username): void;
+    public function setUsername($username);
 
     /**
      * Gets the canonical username in search and sort queries.
+     *
+     * @return string
      */
-    public function getUsernameCanonical(): string;
+    public function getUsernameCanonical();
 
     /**
      * Sets the canonical username.
+     *
+     * @param string $usernameCanonical
+     *
+     * @return static
      */
-    public function setUsernameCanonical(string $usernameCanonical): void;
+    public function setUsernameCanonical($usernameCanonical);
 
-    public function setSalt(?string $salt): void;
+    /**
+     * @param string|null $salt
+     *
+     * @return static
+     */
+    public function setSalt($salt);
 
-    public function getEmail(): string;
+    /**
+     * Gets email.
+     *
+     * @return string
+     */
+    public function getEmail();
 
     /**
      * Sets the email.
+     *
+     * @param string $email
+     *
+     * @return static
      */
-    public function setEmail(string $email): void;
+    public function setEmail($email);
 
     /**
      * Gets the canonical email in search and sort queries.
+     *
+     * @return string
      */
-    public function getEmailCanonical(): string;
+    public function getEmailCanonical();
 
     /**
      * Sets the canonical email.
+     *
+     * @param string $emailCanonical
+     *
+     * @return static
      */
-    public function setEmailCanonical(string $emailCanonical): void;
+    public function setEmailCanonical($emailCanonical);
 
     /**
      * Gets the plain password.
+     *
+     * @return string
      */
-    public function getPlainPassword(): ?string;
+    public function getPlainPassword();
 
     /**
      * Sets the plain password.
+     *
+     * @param string $password
+     *
+     * @return static
      */
-    public function setPlainPassword(?string $password): void;
+    public function setPlainPassword($password);
 
     /**
      * Sets the hashed password.
+     *
+     * @param string $password
+     *
+     * @return static
      */
-    public function setPassword(string $password): void;
+    public function setPassword($password);
 
     /**
      * Tells if the the given user has the super admin role.
+     *
+     * @return bool
      */
-    public function isSuperAdmin(): bool;
+    public function isSuperAdmin();
 
-    public function setEnabled(bool $boolean): void;
+    /**
+     * @param bool $boolean
+     *
+     * @return static
+     */
+    public function setEnabled($boolean);
 
     /**
      * Sets the super admin status.
+     *
+     * @param bool $boolean
+     *
+     * @return static
      */
-    public function setSuperAdmin(bool $boolean): void;
+    public function setSuperAdmin($boolean);
 
     /**
      * Gets the confirmation token.
+     *
+     * @return string|null
      */
-    public function getConfirmationToken(): ?string;
+    public function getConfirmationToken();
 
     /**
      * Sets the confirmation token.
+     *
+     * @param string|null $confirmationToken
+     *
+     * @return static
      */
-    public function setConfirmationToken(?string $confirmationToken): void;
+    public function setConfirmationToken($confirmationToken);
 
     /**
      * Sets the timestamp that the user requested a password reset.
+     *
+     * @param null|\DateTime $date
+     *
+     * @return static
      */
-    public function setPasswordRequestedAt(DateTime $date = null): void;
+    public function setPasswordRequestedAt(\DateTime $date = null);
 
     /**
      * Checks whether the password reset request has expired.
      *
      * @param int $ttl Requests older than this many seconds will be considered expired
+     *
+     * @return bool
      */
-    public function isPasswordRequestNonExpired(int $ttl): bool;
+    public function isPasswordRequestNonExpired($ttl);
 
     /**
      * Sets the last login time.
+     *
+     * @param \DateTime|null $time
+     *
+     * @return static
      */
-    public function setLastLogin(DateTime $time = null): void;
+    public function setLastLogin(\DateTime $time = null);
 
     /**
      * Never use this to check if this user has access to anything!
@@ -126,73 +192,39 @@ interface UserInterface extends BaseUserInterface, EquatableInterface, Serializa
      * instead, e.g.
      *
      *         $authorizationChecker->isGranted('ROLE_USER');
+     *
+     * @param string $role
+     *
+     * @return bool
      */
-    public function hasRole(string $role): bool;
+    public function hasRole($role);
 
     /**
      * Sets the roles of the user.
      *
      * This overwrites any previous roles.
      *
-     * @param string[] $roles
+     * @param array $roles
+     *
+     * @return static
      */
-    public function setRoles(array $roles): void;
+    public function setRoles(array $roles);
 
     /**
      * Adds a role to the user.
+     *
+     * @param string $role
+     *
+     * @return static
      */
-    public function addRole(string $role): void;
+    public function addRole($role);
 
     /**
      * Removes a role to the user.
+     *
+     * @param string $role
+     *
+     * @return static
      */
-    public function removeRole(string $role): void;
-
-    /**
-     * Checks whether the user's account has expired.
-     *
-     * Internally, if this method returns false, the authentication system
-     * will throw an AccountExpiredException and prevent login.
-     *
-     * @return bool true if the user's account is non expired, false otherwise
-     *
-     * @see AccountExpiredException
-     */
-    public function isAccountNonExpired(): bool;
-
-    /**
-     * Checks whether the user is locked.
-     *
-     * Internally, if this method returns false, the authentication system
-     * will throw a LockedException and prevent login.
-     *
-     * @return bool true if the user is not locked, false otherwise
-     *
-     * @see LockedException
-     */
-    public function isAccountNonLocked(): bool;
-
-    /**
-     * Checks whether the user's credentials (password) has expired.
-     *
-     * Internally, if this method returns false, the authentication system
-     * will throw a CredentialsExpiredException and prevent login.
-     *
-     * @return bool true if the user's credentials are non expired, false otherwise
-     *
-     * @see CredentialsExpiredException
-     */
-    public function isCredentialsNonExpired(): bool;
-
-    /**
-     * Checks whether the user is enabled.
-     *
-     * Internally, if this method returns false, the authentication system
-     * will throw a DisabledException and prevent login.
-     *
-     * @return bool true if the user is enabled, false otherwise
-     *
-     * @see DisabledException
-     */
-    public function isEnabled(): bool;
+    public function removeRole($role);
 }

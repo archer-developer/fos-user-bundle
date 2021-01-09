@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the FOSUserBundle package.
  *
- * (c) Christian Gripp <mail@core23.de>
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,17 +11,16 @@ declare(strict_types=1);
 
 namespace FOS\UserBundle\Model;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use DomainException;
-use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
 /**
- * @phpstan-template GroupTemplate of \FOS\UserBundle\Model\GroupInterface
- * @phpstan-implements \FOS\UserBundle\Model\GroupableInterface<GroupTemplate>
+ * Storage agnostic user object.
+ *
+ * @author Thibault Duplessis <thibault.duplessis@gmail.com>
+ * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-abstract class User implements UserInterface, GroupableInterface, LocaleAwareInterface
+abstract class User implements UserInterface, GroupableInterface
 {
     /**
      * @var mixed
@@ -31,22 +28,22 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
     protected $id;
 
     /**
-     * @var string|null
+     * @var string
      */
     protected $username;
 
     /**
-     * @var string|null
+     * @var string
      */
     protected $usernameCanonical;
 
     /**
-     * @var string|null
+     * @var string
      */
     protected $email;
 
     /**
-     * @var string|null
+     * @var string
      */
     protected $emailCanonical;
 
@@ -56,78 +53,93 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
     protected $enabled;
 
     /**
-     * @var string|null
+     * The salt to use for hashing.
+     *
+     * @var string
      */
     protected $salt;
 
     /**
-     * @var string|null
+     * Encrypted password. Must be persisted.
+     *
+     * @var string
      */
     protected $password;
 
     /**
-     * @var string|null
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
      */
     protected $plainPassword;
 
     /**
-     * @var DateTime|null
+     * @var \DateTime|null
      */
     protected $lastLogin;
 
     /**
+     * Random string sent to the user email address in order to verify it.
+     *
      * @var string|null
      */
     protected $confirmationToken;
 
     /**
-     * @var DateTime|null
+     * @var \DateTime|null
      */
     protected $passwordRequestedAt;
 
     /**
-     * @phpstan-var Collection<array-key, GroupTemplate>
+     * @var GroupInterface[]|Collection
      */
     protected $groups;
 
     /**
-     * @var string[]
+     * @var array
      */
     protected $roles;
 
     /**
-     * @var string|null
+     * User constructor.
      */
-    protected $locale;
-
-    /**
-     * @var string|null
-     */
-    protected $timezone;
-
     public function __construct()
     {
         $this->enabled = false;
-        $this->roles   = [];
+        $this->roles = array();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->getUsername();
+        return (string) $this->getUsername();
     }
 
-    public function addRole(string $role): void
+    /**
+     * {@inheritdoc}
+     */
+    public function addRole($role)
     {
         $role = strtoupper($role);
+        if ($role === static::ROLE_DEFAULT) {
+            return $this;
+        }
 
-        if (!\in_array($role, $this->roles, true)) {
+        if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
         }
+
+        return $this;
     }
 
-    public function serialize(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize()
     {
-        return serialize([
+        return serialize(array(
             $this->password,
             $this->salt,
             $this->usernameCanonical,
@@ -136,24 +148,27 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
             $this->id,
             $this->email,
             $this->emailCanonical,
-        ]);
+        ));
     }
 
-    public function unserialize($serialized): void
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized)
     {
         $data = unserialize($serialized);
 
-        if (13 === \count($data)) {
+        if (13 === count($data)) {
             // Unserializing a User object from 1.3.x
             unset($data[4], $data[5], $data[6], $data[9], $data[10]);
             $data = array_values($data);
-        } elseif (11 === \count($data)) {
+        } elseif (11 === count($data)) {
             // Unserializing a User from a dev version somewhere between 2.0-alpha3 and 2.0-beta1
             unset($data[4], $data[7], $data[8]);
             $data = array_values($data);
         }
 
-        [
+        list(
             $this->password,
             $this->salt,
             $this->usernameCanonical,
@@ -162,85 +177,103 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
             $this->id,
             $this->email,
             $this->emailCanonical
-        ] = $data;
+            ) = $data;
     }
 
-    public function eraseCredentials(): void
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    public function getUsername(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername()
     {
-        if (null === $this->username) {
-            throw new DomainException('Username cannot be null');
-        }
-
         return $this->username;
     }
 
-    public function getUsernameCanonical(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsernameCanonical()
     {
-        if (null === $this->usernameCanonical) {
-            throw new DomainException('Username cannot be null');
-        }
-
         return $this->usernameCanonical;
     }
 
-    public function getSalt(): ?string
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt()
     {
         return $this->salt;
     }
 
-    public function getEmail(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmail()
     {
-        if (null === $this->email) {
-            throw new DomainException('Email cannot be null');
-        }
-
         return $this->email;
     }
 
-    public function getEmailCanonical(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailCanonical()
     {
-        if (null === $this->emailCanonical) {
-            throw new DomainException('Email cannot be null');
-        }
-
         return $this->emailCanonical;
     }
 
-    public function getPassword(): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword()
     {
-        if (null === $this->password) {
-            throw new DomainException('Password cannot be null');
-        }
-
         return $this->password;
     }
 
-    public function getPlainPassword(): ?string
+    /**
+     * {@inheritdoc}
+     */
+    public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
-    public function getLastLogin(): ?DateTime
+    /**
+     * Gets the last login time.
+     *
+     * @return \DateTime|null
+     */
+    public function getLastLogin()
     {
         return $this->lastLogin;
     }
 
-    public function getConfirmationToken(): ?string
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfirmationToken()
     {
         return $this->confirmationToken;
     }
 
-    public function getRoles(): array
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles()
     {
         $roles = $this->roles;
 
@@ -251,143 +284,238 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
         // we need to make sure to have at least one role
         $roles[] = static::ROLE_DEFAULT;
 
-        return array_values(array_unique($roles));
+        return array_unique($roles);
     }
 
-    public function hasRole(string $role): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRole($role)
     {
-        return \in_array(strtoupper($role), $this->getRoles(), true);
+        return in_array(strtoupper($role), $this->getRoles(), true);
     }
 
-    public function isAccountNonExpired(): bool
-    {
-        return true;
-    }
-
-    public function isAccountNonLocked(): bool
-    {
-        return true;
-    }
-
-    public function isCredentialsNonExpired(): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function isAccountNonExpired()
     {
         return true;
     }
 
-    public function isEnabled(): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
     {
         return $this->enabled;
     }
 
-    public function isSuperAdmin(): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function isSuperAdmin()
     {
         return $this->hasRole(static::ROLE_SUPER_ADMIN);
     }
 
-    public function removeRole(string $role): void
+    /**
+     * {@inheritdoc}
+     */
+    public function removeRole($role)
     {
         if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }
+
+        return $this;
     }
 
-    public function setUsername(string $username): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setUsername($username)
     {
         $this->username = $username;
+
+        return $this;
     }
 
-    public function setUsernameCanonical(string $usernameCanonical): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setUsernameCanonical($usernameCanonical)
     {
         $this->usernameCanonical = $usernameCanonical;
+
+        return $this;
     }
 
-    public function setSalt(?string $salt): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setSalt($salt)
     {
         $this->salt = $salt;
+
+        return $this;
     }
 
-    public function setEmail(string $email): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
-    public function setEmailCanonical(string $emailCanonical): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailCanonical($emailCanonical)
     {
         $this->emailCanonical = $emailCanonical;
+
+        return $this;
     }
 
-    public function setEnabled(bool $boolean): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setEnabled($boolean)
     {
-        $this->enabled = $boolean;
+        $this->enabled = (bool) $boolean;
+
+        return $this;
     }
 
-    public function setPassword(string $password): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
     }
 
-    public function setSuperAdmin(bool $boolean): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setSuperAdmin($boolean)
     {
-        if ($boolean) {
+        if (true === $boolean) {
             $this->addRole(static::ROLE_SUPER_ADMIN);
         } else {
             $this->removeRole(static::ROLE_SUPER_ADMIN);
         }
+
+        return $this;
     }
 
-    public function setPlainPassword(?string $password): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+
+        return $this;
     }
 
-    public function setLastLogin(DateTime $time = null): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
+
+        return $this;
     }
 
-    public function setConfirmationToken(?string $confirmationToken): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfirmationToken($confirmationToken)
     {
         $this->confirmationToken = $confirmationToken;
+
+        return $this;
     }
 
-    public function setPasswordRequestedAt(DateTime $date = null): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setPasswordRequestedAt(\DateTime $date = null)
     {
         $this->passwordRequestedAt = $date;
+
+        return $this;
     }
 
-    public function getPasswordRequestedAt(): ?DateTime
+    /**
+     * Gets the timestamp that the user requested a password reset.
+     *
+     * @return null|\DateTime
+     */
+    public function getPasswordRequestedAt()
     {
         return $this->passwordRequestedAt;
     }
 
-    public function isPasswordRequestNonExpired(int $ttl): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function isPasswordRequestNonExpired($ttl)
     {
-        return $this->getPasswordRequestedAt() instanceof DateTime
-               && $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+        return $this->getPasswordRequestedAt() instanceof \DateTime &&
+            $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
     }
 
-    public function setRoles(array $roles): void
+    /**
+     * {@inheritdoc}
+     */
+    public function setRoles(array $roles)
     {
-        $this->roles = [];
+        $this->roles = array();
 
         foreach ($roles as $role) {
             $this->addRole($role);
         }
+
+        return $this;
     }
 
-    public function getGroups(): Collection
+    /**
+     * {@inheritdoc}
+     */
+    public function getGroups()
     {
-        if (null === $this->groups) {
-            $this->groups = new ArrayCollection();
-        }
-
-        return $this->groups;
+        return $this->groups ?: $this->groups = new ArrayCollection();
     }
 
-    public function getGroupNames(): array
+    /**
+     * {@inheritdoc}
+     */
+    public function getGroupNames()
     {
-        $names = [];
+        $names = array();
         foreach ($this->getGroups() as $group) {
             $names[] = $group->getName();
         }
@@ -395,66 +523,35 @@ abstract class User implements UserInterface, GroupableInterface, LocaleAwareInt
         return $names;
     }
 
-    public function hasGroup(string $name): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function hasGroup($name)
     {
-        return \in_array($name, $this->getGroupNames(), true);
+        return in_array($name, $this->getGroupNames());
     }
 
-    public function addGroup(GroupInterface $group): void
+    /**
+     * {@inheritdoc}
+     */
+    public function addGroup(GroupInterface $group)
     {
         if (!$this->getGroups()->contains($group)) {
             $this->getGroups()->add($group);
         }
+
+        return $this;
     }
 
-    public function removeGroup(GroupInterface $group): void
+    /**
+     * {@inheritdoc}
+     */
+    public function removeGroup(GroupInterface $group)
     {
         if ($this->getGroups()->contains($group)) {
             $this->getGroups()->removeElement($group);
         }
-    }
 
-    public function setLocale(?string $locale): void
-    {
-        $this->locale = $locale;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
-    }
-
-    public function setTimezone(?string $timezone): void
-    {
-        $this->timezone = $timezone;
-    }
-
-    public function getTimezone(): ?string
-    {
-        return $this->timezone;
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
-    public function isEqualTo(BaseUserInterface $user): bool
-    {
-        if (!$user instanceof self) {
-            return false;
-        }
-
-        if ($this->password !== $user->getPassword()) {
-            return false;
-        }
-
-        if ($this->salt !== $user->getSalt()) {
-            return false;
-        }
-
-        if ($this->username !== $user->getUsername()) {
-            return false;
-        }
-
-        return true;
+        return $this;
     }
 }
