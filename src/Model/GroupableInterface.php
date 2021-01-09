@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the FOSUserBundle package.
  *
- * (c) Christian Gripp <mail@core23.de>
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,45 +11,51 @@ declare(strict_types=1);
 
 namespace FOS\UserBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
- * @phpstan-template GroupTemplate of \FOS\UserBundle\Model\GroupInterface
+ * @author Thibault Duplessis <thibault.duplessis@gmail.com>
+ * @author Johannes M. Schmitt <schmittjoh@gmail.com>
+ * @author Christophe Coevoet <stof@notk.org>
  */
 interface GroupableInterface
 {
     /**
      * Gets the groups granted to the user.
      *
-     * @phpstan-return Collection<array-key, GroupTemplate>
+     * @return \Traversable
      */
-    public function getGroups(): Collection;
+    public function getGroups();
 
     /**
      * Gets the name of the groups which includes the user.
      *
-     * @return string[]
+     * @return array
      */
-    public function getGroupNames(): array;
+    public function getGroupNames();
 
     /**
      * Indicates whether the user belongs to the specified group or not.
      *
      * @param string $name Name of the group
+     *
+     * @return bool
      */
-    public function hasGroup(string $name): bool;
+    public function hasGroup($name);
 
     /**
      * Add a group to the user groups.
      *
-     * @phpstan-param GroupTemplate $group
+     * @param GroupInterface $group
+     *
+     * @return static
      */
-    public function addGroup(GroupInterface $group): void;
+    public function addGroup(GroupInterface $group);
 
     /**
      * Remove a group from the user groups.
      *
-     * @phpstan-param GroupTemplate $group
+     * @param GroupInterface $group
+     *
+     * @return static
      */
-    public function removeGroup(GroupInterface $group): void;
+    public function removeGroup(GroupInterface $group);
 }
