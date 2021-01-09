@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
+  <file src="src/Action/ChangePasswordAction.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>Response</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$event-&gt;getResponse()</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/Action/LoggedinAction.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>Response</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$event-&gt;getResponse()</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/Action/ResetAction.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>Response</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$event-&gt;getResponse()</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/DependencyInjection/Configuration.php">
+    <UndefinedMethod occurrences="4">
+      <code>addDefaultsIfNotSet</code>
+      <code>children</code>
+      <code>children</code>
+      <code>children</code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Doctrine/GroupManager.php">
+    <InvalidDocblock occurrences="1">
+      <code>public function findGroups(): array</code>
+    </InvalidDocblock>
+  </file>
+  <file src="src/Model/GroupManagerInterface.php">
+    <InvalidDocblock occurrences="1">
+      <code>public function findGroups(): array;</code>
+    </InvalidDocblock>
+  </file>
+  <file src="src/NucleosUserBundle.php">
+    <InvalidScalarArgument occurrences="2">
+      <code>$mappings</code>
+      <code>$mappings</code>
+    </InvalidScalarArgument>
+  </file>
+</files>

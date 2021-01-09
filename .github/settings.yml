@@ -1,0 +1,33 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+_extends: .github
+
+repository:
+  name: NucleosUserBundle
+  description: 👤 Lightweight user management for symfony.
+  homepage: https://docs.nucleos.rocks/projects/user-bundle/
+  topics: hacktoberfest, symfony, symfony-bundle, bundle, user, management
+
+branches:
+  - name: main
+    protection:
+      enforce_admins: false
+      required_status_checks:
+        contexts:
+          - "Coding Standards (7.4)"
+          - "Static Code Analysis (7.4)"
+          - "Test (PHP 7.3, symfony 4.4, lowest)"
+          - "Test (PHP 7.3, symfony 5.1, lowest)"
+          - "Test (PHP 7.3, symfony 4.4, highest)"
+          - "Test (PHP 7.3, symfony 5.1, highest)"
+          - "Test (PHP 7.4, symfony 4.4, lowest)"
+          - "Test (PHP 7.4, symfony 5.1, lowest)"
+          - "Test (PHP 7.4, symfony 4.4, highest)"
+          - "Test (PHP 7.4, symfony 5.1, highest)"
+          - "Code Coverage (7.4)"
+          - "Mutation Tests (7.4)"
+          - "Mutation Tests (7.4)"
+        strict: true
+
+      required_pull_request_reviews: null
+      restrictions: null
