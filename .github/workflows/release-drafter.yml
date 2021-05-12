@@ -55,7 +55,7 @@ jobs:
         run: vendor/bin/changelog-linker link
 
       - name: "Commit changes"
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v4.11.0
         with:
           commit_user_name: "FOS Bot"
           commit_user_email: "ci@FOS.rocks"
